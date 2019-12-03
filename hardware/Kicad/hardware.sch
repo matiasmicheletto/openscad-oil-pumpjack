@@ -1,0 +1,329 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:hardware-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L LM555N U1
+U 1 1 5DE6991B
+P 2700 2750
+F 0 "U1" H 2300 3100 50  0000 L CNN
+F 1 "LM555N" H 2300 2400 50  0000 L CNN
+F 2 "Housings_DIP:DIP-8_W7.62mm" H 2700 2750 50  0000 C CNN
+F 3 "" H 2700 2750 50  0000 C CNN
+	1    2700 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS08 U3
+U 1 1 5DE69B79
+P 7350 1750
+F 0 "U3" H 7350 1800 50  0000 C CNN
+F 1 "74LS08" H 7350 1700 50  0000 C CNN
+F 2 "Housings_DIP:DIP-14_W7.62mm" H 7350 1750 50  0000 C CNN
+F 3 "" H 7350 1750 50  0000 C CNN
+	1    7350 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS08 U3
+U 2 1 5DE69BD0
+P 7350 2250
+F 0 "U3" H 7350 2300 50  0000 C CNN
+F 1 "74LS08" H 7350 2200 50  0000 C CNN
+F 2 "Housings_DIP:DIP-14_W7.62mm" H 7350 2250 50  0000 C CNN
+F 3 "" H 7350 2250 50  0000 C CNN
+	2    7350 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS08 U3
+U 3 1 5DE69BFF
+P 7350 3350
+F 0 "U3" H 7350 3400 50  0000 C CNN
+F 1 "74LS08" H 7350 3300 50  0000 C CNN
+F 2 "Housings_DIP:DIP-14_W7.62mm" H 7350 3350 50  0000 C CNN
+F 3 "" H 7350 3350 50  0000 C CNN
+	3    7350 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS08 U3
+U 4 1 5DE69C24
+P 7350 3850
+F 0 "U3" H 7350 3900 50  0000 C CNN
+F 1 "74LS08" H 7350 3800 50  0000 C CNN
+F 2 "Housings_DIP:DIP-14_W7.62mm" H 7350 3850 50  0000 C CNN
+F 3 "" H 7350 3850 50  0000 C CNN
+	4    7350 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS109 U2
+U 1 1 5DE69E4B
+P 5250 1900
+F 0 "U2" H 5250 2000 50  0000 C CNN
+F 1 "74LS109" H 5250 1800 50  0000 C CNN
+F 2 "Housings_DIP:DIP-14_W7.62mm" H 5250 1900 50  0000 C CNN
+F 3 "" H 5250 1900 50  0000 C CNN
+	1    5250 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS109 U2
+U 2 1 5DE69EB6
+P 5250 3700
+F 0 "U2" H 5250 3800 50  0000 C CNN
+F 1 "74LS109" H 5250 3600 50  0000 C CNN
+F 2 "Housings_DIP:DIP-14_W7.62mm" H 5250 3700 50  0000 C CNN
+F 3 "" H 5250 3700 50  0000 C CNN
+	2    5250 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 3450 6750 3450
+Wire Wire Line
+	6000 3950 6750 3950
+Wire Wire Line
+	5900 1650 6750 1650
+Wire Wire Line
+	6750 1850 6450 1850
+Wire Wire Line
+	6450 1850 6450 3950
+Connection ~ 6450 3950
+Wire Wire Line
+	5900 2150 6750 2150
+Wire Wire Line
+	6750 2350 6200 2350
+Wire Wire Line
+	6200 2350 6200 3450
+Connection ~ 6200 3450
+Wire Wire Line
+	6000 3250 6750 3250
+Wire Wire Line
+	6000 2150 6000 3250
+Connection ~ 6000 2150
+Wire Wire Line
+	6750 3750 6600 3750
+Wire Wire Line
+	6600 3750 6600 2150
+Connection ~ 6600 2150
+Wire Wire Line
+	7950 1750 8800 1750
+Wire Wire Line
+	8800 1750 8800 2550
+Wire Wire Line
+	8800 2550 9250 2550
+Wire Wire Line
+	8300 2650 9250 2650
+Wire Wire Line
+	8300 2650 8300 2250
+Wire Wire Line
+	8300 2250 7950 2250
+Wire Wire Line
+	8300 2750 9250 2750
+Wire Wire Line
+	8300 2750 8300 3350
+Wire Wire Line
+	8300 3350 7950 3350
+Wire Wire Line
+	8800 2850 9250 2850
+Wire Wire Line
+	8800 2850 8800 3850
+Wire Wire Line
+	8800 3850 7950 3850
+Connection ~ 6200 2700
+Connection ~ 6000 2800
+Wire Wire Line
+	4600 1650 4200 1650
+Wire Wire Line
+	4200 1650 4200 2700
+Wire Wire Line
+	4200 2150 4600 2150
+Wire Wire Line
+	4500 3450 4250 3450
+Wire Wire Line
+	4250 2800 4250 3950
+Wire Wire Line
+	4250 3950 4500 3950
+Wire Wire Line
+	4200 2700 6200 2700
+Connection ~ 4200 2150
+Wire Wire Line
+	6000 2800 4250 2800
+Connection ~ 4250 3450
+$Comp
+L CP_Small C1
+U 1 1 5DE6BE73
+P 1550 3450
+F 0 "C1" H 1560 3520 50  0000 L CNN
+F 1 "CP_Small" H 1560 3370 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D5_L11_P2.5" H 1550 3450 50  0000 C CNN
+F 3 "" H 1550 3450 50  0000 C CNN
+	1    1550 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR01
+U 1 1 5DE6C131
+P 1550 3650
+F 0 "#PWR01" H 1550 3400 50  0001 C CNN
+F 1 "GND" H 1550 3500 50  0000 C CNN
+F 2 "" H 1550 3650 50  0000 C CNN
+F 3 "" H 1550 3650 50  0000 C CNN
+	1    1550 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 2550 1550 2550
+Wire Wire Line
+	3200 2950 3300 2950
+Wire Wire Line
+	3300 2950 3300 3200
+Wire Wire Line
+	3300 3200 1550 3200
+Connection ~ 1550 3200
+Wire Wire Line
+	3200 2550 3850 2550
+Wire Wire Line
+	3850 1900 3850 3700
+Wire Wire Line
+	3850 1900 4600 1900
+Wire Wire Line
+	3850 3700 4500 3700
+Connection ~ 3850 2550
+$Comp
+L VCC #PWR02
+U 1 1 5DE6C3AF
+P 1300 2200
+F 0 "#PWR02" H 1300 2050 50  0001 C CNN
+F 1 "VCC" H 1300 2350 50  0000 C CNN
+F 2 "" H 1300 2200 50  0000 C CNN
+F 3 "" H 1300 2200 50  0000 C CNN
+	1    1300 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 2950 2200 2950
+Wire Wire Line
+	1800 2350 1800 2950
+Wire Wire Line
+	2150 2350 3300 2350
+Wire Wire Line
+	3300 2100 3300 2750
+Wire Wire Line
+	3300 2750 3200 2750
+$Comp
+L R_Small R1
+U 1 1 5DE6C7E1
+P 2050 2350
+F 0 "R1" H 2080 2370 50  0000 L CNN
+F 1 "R_Small" H 2080 2310 50  0000 L CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" H 2050 2350 50  0000 C CNN
+F 3 "" H 2050 2350 50  0000 C CNN
+	1    2050 2350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1300 2350 1950 2350
+Connection ~ 1800 2350
+Wire Wire Line
+	1300 2200 1300 2350
+Wire Wire Line
+	1550 1950 1550 3350
+Wire Wire Line
+	1550 3550 1550 3650
+Connection ~ 1550 2550
+$Comp
+L VCC #PWR03
+U 1 1 5DE6D47F
+P 5250 1000
+F 0 "#PWR03" H 5250 850 50  0001 C CNN
+F 1 "VCC" H 5250 1150 50  0000 C CNN
+F 2 "" H 5250 1000 50  0000 C CNN
+F 3 "" H 5250 1000 50  0000 C CNN
+	1    5250 1000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 4500 5250 4600
+Wire Wire Line
+	5250 4600 4450 4600
+Wire Wire Line
+	4450 4600 4450 1100
+Wire Wire Line
+	4450 1100 5250 1100
+Wire Wire Line
+	5250 1000 5250 1200
+Wire Wire Line
+	5250 2900 4450 2900
+Connection ~ 4450 2900
+Wire Wire Line
+	5250 2600 5250 2900
+Connection ~ 5250 1100
+$Comp
+L CONN_01X04 P1
+U 1 1 5DE6E28C
+P 9450 2700
+F 0 "P1" H 9450 2950 50  0000 C CNN
+F 1 "CONN_01X04" V 9550 2700 50  0000 C CNN
+F 2 "Connect:bornier4" H 9450 2700 50  0000 C CNN
+F 3 "" H 9450 2700 50  0000 C CNN
+	1    9450 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L POT RV1
+U 1 1 5DE6E9C2
+P 3300 1950
+F 0 "RV1" H 3300 1870 50  0000 C CNN
+F 1 "POT" H 3300 1950 50  0000 C CNN
+F 2 "" H 3300 1950 50  0000 C CNN
+F 3 "" H 3300 1950 50  0000 C CNN
+	1    3300 1950
+	0    -1   -1   0   
+$EndComp
+Connection ~ 3300 2350
+Wire Wire Line
+	3150 1950 1550 1950
+$EndSCHEMATC
