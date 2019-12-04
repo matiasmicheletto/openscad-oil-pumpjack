@@ -4,7 +4,7 @@ $fn = 100;  // Resolucion del modelo
 W = 45;     // Ancho (en direccion X)
 L = 18;     // Largo (en direccion Y)
 H = 40;     // Alto (en direccion Z)
-ll = 6;     // Separacion sobresaliente para ajuste
+ww = 14;    // Sobresaliente ajuste de pieza
 hh = 5;     // Altura base
 
 Rs = 3;     // Radio del eje de accionamiento
@@ -37,8 +37,8 @@ module pieza(motor){
                 cylinder(r = W/2, h = L, center = true);    
             
             // Base
-            translate([0,ll/2,-H/2-hh/2])
-                cube([W,L+ll,hh],center = true); 
+            translate([0,0,-H/2-hh/2])
+                cube([W+ww,L,hh],center = true); 
         }
         
         // Orificio para el eje de accionamiento
@@ -69,9 +69,9 @@ module pieza(motor){
         }
         
         // Orificions para tornillos de ajuste de la base
-        translate([-d2/2,-ll+L,-H/2-hh/2])
+        translate([-W/2-ww/4,0,-H/2-hh/2])
             cylinder(r = r2, h = hh, center = true);    
-        translate([d2/2,-ll+L,-H/2-hh/2])
+        translate([W/2+ww/4,0,-H/2-hh/2])
             cylinder(r = r2, h = hh, center = true);
     }
 }

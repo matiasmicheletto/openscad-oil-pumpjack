@@ -1,8 +1,8 @@
 $fn = 100;      // Resolucion del modelo
 
-H = 6;        // Altura
-Rp = 2;       // Radio de la pista (menor que H/2)
-R = 15+Rp;    // Radio exterior
+H = 6;          // Altura
+Rp = 2;         // Radio de la pista (menor que H/2)
+R = 15+Rp;      // Radio exterior
 
 Ra = 2.50;      // Radio eje
 Rb = 1.55;      // Achatamiento
@@ -10,7 +10,7 @@ Rb = 1.55;      // Achatamiento
 // Orificios
 Nh = 6;         // Cantidad
 Rh = 3;         // Radio 
-Dh = R/2+1;     // Separacion desde el centro
+Dh = (R-Rp)/2+1;     // Separacion desde el centro
 
 // Ahuecamiento
 Di = 2;         // Borde interior
@@ -21,8 +21,9 @@ e = 2;          // Profundidad
 difference(){
     cylinder(r = R, h = H); // Envolvente
 
+    // Eje achatado
     intersection(){
-        cylinder(r = Ra, h = H); // Eje
+        cylinder(r = Ra, h = H);
         translate([0,0,H/2])
             cube([Rb*2,Ra*2,H], center = true);
     }
@@ -38,7 +39,6 @@ difference(){
     //    cylinder(r = R, h = Rp*2);
     //    cylinder(r = R-Rp, h = Rp*2);
     //}
-    
 
     // Orificios
     for(angle = [0 : 360/Nh : 360])

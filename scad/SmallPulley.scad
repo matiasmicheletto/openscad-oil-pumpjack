@@ -3,12 +3,12 @@ $fn = 100;  // Resolucion del modelo
 H = 5;      // Altura
 Rp = 1.5;     // Radio de la pista (menor que H/2)
 R = 10+Rp;// Radio exterior
-Ra = 2.55;  // Radio eje
 
+Ra = 2.55;  // Radio eje
 
 // Orificios
 Nh = 6;     // Cantidad
-Rh = 1;     // Radio
+Rh = 1.5;     // Radio
 Dh = R/2+1; // Separacion desde el centro
 
 // Ahuecamiento
