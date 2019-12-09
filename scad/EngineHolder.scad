@@ -26,46 +26,46 @@ wc3 = 7;        // Largo parte angosta
 lc3 = 6;        // Ancho parte angosta
 xc3 = sqrt(Rm*Rm-lc3*lc3/4)+wc3/2; // Posicion del centro del cuadrado
 
-module pieza(motor){ 
+module pieza(motor, L2){ 
     difference(){ 
         union(){
-            cube([W,L,H],center = true); // Envolvente        
+            cube([W,L2,H],center = true); // Envolvente        
             
             // Semicirculo superior
             translate([0,0,H/2])
             rotate([90,0,0])
-                cylinder(r = W/2, h = L, center = true);    
+                cylinder(r = W/2, h = L2, center = true);    
             
             // Base
             translate([0,0,-H/2-hh/2])
-                cube([W+ww,L,hh],center = true); 
+                cube([W+ww,L2,hh],center = true); 
         }
         
         // Orificio para el eje de accionamiento
         translate([0,0,H/2+es])
         rotate([90,0,0])
-            cylinder(r = Rs, h = L, center = true);    
+            cylinder(r = Rs, h = L2, center = true);    
         
         // Hueco para el motor
         if(motor){
             rotate([90,0,0])
-                cylinder(r = Rm, h = L+0.2, center = true);
+                cylinder(r = Rm, h = L2+0.2, center = true);
                
             // Orificios para los tornillos del motor        
             translate([-d2/2,0,0])
             rotate([90,0,0])
-                cylinder(r = r2, h = L, center = true);    
+                cylinder(r = r2, h = L2, center = true);    
             translate([d2/2,0,0])
             rotate([90,0,0])
-                cylinder(r = r2, h = L, center = true);
+                cylinder(r = r2, h = L2, center = true);
             
             // Espacio para los conectores del motor
             translate([0,0,-xc1])
-                cube([lc1,L,wc1], center = true);
+                cube([lc1,L2,wc1], center = true);
             translate([0,0,-xc2])
-                cube([lc2,L,wc2], center = true);
+                cube([lc2,L2,wc2], center = true);
             translate([0,0,-xc3])
-                cube([lc3,L,wc3], center = true);    
+                cube([lc3,L2,wc3], center = true);    
         }
         
         // Orificions para tornillos de ajuste de la base
@@ -76,4 +76,6 @@ module pieza(motor){
     }
 }
 
-pieza(true);
+pieza(true,L);
+translate([0,30,0])
+    pieza(false,L/2);
