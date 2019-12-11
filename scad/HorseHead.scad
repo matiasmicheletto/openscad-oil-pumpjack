@@ -13,6 +13,9 @@ a1 = 15; // Ancho del cuadrante (Y)
 b1 = H-10; // Largo del cuadrante (Z)
 r2 = 2.3; // Radio del tornillo de ajuste
 
+// Desplazamiento del acople
+delta = 7.5;
+
 // Poligono de interseccion
 poly = [[0,-L/2],
         [W,-L/2],
@@ -32,9 +35,9 @@ poly = [[0,-L/2],
             }
         
         // Acople al brazo
-        translate([(W+a)/2+5,0,0])
+        translate([(W+a)/2+5,delta,0])
             cube([W+a,a1,b1], center = true);
-        translate([W+a-5,0,0])
+        translate([W+a-5,delta,0])
             cylinder(r = r2, h = H, center = true);
     }
 }
