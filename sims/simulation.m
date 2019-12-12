@@ -1,7 +1,7 @@
 % Ecuaciones de movimiento mecanismo principal AIB
 
 clear all; clc; close all;
-delete 'anim.gif' % Borrar animacion si ya existe
+%delete 'anim.gif' % Borrar animacion si ya existe
 
 
 % Dimensiones en mm
@@ -9,6 +9,7 @@ a = 100; % Alto del soporte brazo principal
 b = 75; % Distancia del origen al eje motor
 r1 = 75; % Longitud del brazo principal
 r2 = 25; % Longitud del brazo motor
+r2 = 75; % Distancia entre el apoyo del brazo y el cabezal
 d = sqrt(a^2+r2^2); % Longitud de la biela
 
 % Parametros de la ecuacion (con t = 0)
@@ -48,9 +49,11 @@ for t=0:0.2:4*pi
 	axis([-50,150,-50,150]);
 	grid;
 
-	saveas (1, 'snap.png'); % Exportar grafico a imagen (se puede pasar a matriz??)
-	im = imread('snap.png'); % Importar como matriz
-	imwrite(im,'anim.gif','gif','writemode','append','DelayTime',0); % Adjuntar a gif animado
+	pause(0.1);
+
+	%saveas (1, 'snap.png'); % Exportar grafico a imagen (se puede pasar a matriz??)
+	%im = imread('snap.png'); % Importar como matriz
+	%imwrite(im,'anim.gif','gif','writemode','append','DelayTime',0); % Adjuntar a gif animado
 end
 
-delete 'snap.png' % Borrar imagen temporal
+%delete 'snap.png' % Borrar imagen temporal
