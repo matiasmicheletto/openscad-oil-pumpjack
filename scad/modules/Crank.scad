@@ -1,5 +1,3 @@
-$fn = 500;  // Resolucion del modelo
-
 module crank(){
     H = 10;    // Altura de la palanca (Z)
     // Contrapesa

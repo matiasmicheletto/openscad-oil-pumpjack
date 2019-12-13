@@ -1,5 +1,3 @@
-$fn = 100;  // Resolucion del modelo
-
 module block(motor){ 
     // Dimensiones exteriores del montaje
     W = 45;     // Ancho (en direccion X)    
@@ -76,6 +74,7 @@ module block(motor){
     }
 }
 
+//$fn = 250;
 block(true);
 translate([0,30,0])
     block(false);

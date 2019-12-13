@@ -1,31 +1,43 @@
-$fn = 100;
 
-// Brazo
-dim = [100,10,5];
+module beam(){
+    a = [100,10,15];     // Barra
+    rh = 2.3;           // Radio orificio para ajuste
+    b = [2*rh+2, 2];    // Dims ajuste
+    
+    module side(){
+        difference(){
+            union(){ // Envolvente rectangular con terminacion circular
+                cube([b.x, b.y, 3*a.z/2], center = true);
+                
+                translate([0, 0, 3*a.z/4])
+                rotate([90, 0, 0])
+                    cylinder(r = b.x/2, h = b.y, center = true);
+            }        
+            translate([0, 0, 3*a.z/4])
+            rotate([90, 0, 0])
+                cylinder(r = rh, h = b.y+1, center = true);
+        }
+    }
 
-e = 2; // Espesor arandelas ajuste
-rh = 2.3; // Radio orificio para ajuste
-l = 2*rh+2; // Ancho
-
-
-module side(){
+    
+    
     difference(){
-        union(){ // Envolvente rectangular con terminacion circular
-            cube([l,e,3*dim.z/2], center = true);
-            
-            translate([0,0,3*dim.z/4])
-            rotate([90,0,0])
-                cylinder(r = l/2, h = e, center = true);
-        }        
-        translate([0,0,3*dim.z/4])
+        union(){
+            cube(a, center = true);
+
+            translate([0, (a.y - b.y)/2, a.z/4])
+                side();
+            translate([0, -(a.y - b.y)/2, a.z/4])
+                side();
+        }
+        
+        translate([(a.x)/2-rh-2,0,0])
+            cylinder(r = rh, h = a.z+1, center = true);
+        
+        translate([-(a.x)/2+rh+2,0,0])
         rotate([90,0,0])
-            cylinder(r = rh, h = e+1, center = true);
+            cylinder(r = rh, h = a.y+1, center = true);
     }
 }
 
-cube(dim, center = true);
-
-translate([0,(dim.y-e)/2,dim.z/4])
-    side();
-translate([0,-(dim.y-e)/2,dim.z/4])
-    side();
+beam();

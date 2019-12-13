@@ -1,6 +1,4 @@
-$fn = 500;
-
- module horseHead(){
+module horseHead(){
      
     R = 150; // Radio de rotacion
     W = 10; // Ancho (X)

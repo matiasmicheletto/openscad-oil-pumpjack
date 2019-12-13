@@ -1,15 +1,13 @@
-$fn = 100;      // Resolucion del modelo
-    
 module pulley(motor){
     H = 6;                          // Altura
     Rp = 2;                         // Radio de la pista (menor que H/2)
-    R = (motor ? 15 : 10)+Rp;       // Radio exterior
+    R = (motor ? 15 : 7)+Rp;       // Radio exterior
 
     Ra = 2.50;                      // Radio eje
     Rb = 1.55;                      // Achatamiento
 
     // Orificios
-    Nh = motor ? 6 : 8;             // Cantidad
+    Nh = 6;             // Cantidad
     Rh = motor ? 3 : 1.5;           // Radio 
     Dh = (motor ? R-Rp : R)/2+1;    // Separacion desde el centro
 
