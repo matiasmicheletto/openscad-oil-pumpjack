@@ -1,5 +1,5 @@
 module pitman(){
-    pt = [12,100,5]; // Dimensiones de los brazos
+    pt = [12,70,5]; // Dimensiones de los brazos
     rh = 3.5; // Radio ejes
     
     difference(){
@@ -19,9 +19,9 @@ module pitman(){
 
 module equalizer(){
     eq = [65,15,7]; // Dimensiones del travesanio
-    bm = [10,5]; // Medidas del brazo para el apoyo
+    bm = [10,10]; // Medidas del brazo para el apoyo
     rh = 3.5; // Radio ejes
-    rt = 2.3; // Radio tornillo ajuste
+    rt = 1.7; // Radio tornillo ajuste
     h = 10; // Largo de los cilindros de ajuste
     
     difference(){
@@ -42,8 +42,8 @@ module equalizer(){
                 cylinder(r = rh-0.1, h = h, center = true);
         }
         // Apoyo del brazo 
-        translate([0,(eq.y-2*bm.y)/2,0])
-            cube([bm.x,bm.y*2,eq.z], center = true);
+        translate([0,(eq.y-bm.y)/2,0])
+            cube([bm.x,bm.y,eq.z], center = true);
         // Orificio para atornillar
         rotate([90,0,0])
             cylinder(r = rt, h = eq.y, center = true);

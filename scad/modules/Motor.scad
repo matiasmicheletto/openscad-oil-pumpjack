@@ -76,5 +76,5 @@ module block(motor){
 
 //$fn = 250;
 block(true);
-translate([0,30,0])
+translate([0,28.5,0])
     block(false);

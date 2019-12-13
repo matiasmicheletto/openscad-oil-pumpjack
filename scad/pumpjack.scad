@@ -5,12 +5,12 @@ use <modules/Pitman.scad>
 use <modules/WalkingBeam.scad>
 use <modules/HorseHead.scad>
 
-$fn = 250;
+//$fn = 250;
 
 // Soportes del motor
 translate([0,-20,0])
     block(true);
-translate([0,10,0])
+translate([0,8.5,0])
     block(false);
 
 // Poleas
@@ -25,27 +25,27 @@ rotate([90,0,0])
 translate([0,-35,35])
 rotate([90,0,0])
     crank();
-translate([0,20,35])
+translate([0,18.5,35])
 rotate([-90,0,0])
     crank();
     
 // Bielas
-translate([14,30,70])
+translate([5,28.5,60])
 rotate([90,-45,0])
     pitman();
-translate([14,-45,70])
+translate([5,-45,60])
 rotate([90,-45,0])
     pitman();
-translate([-21,-7,109])
+translate([25,-7,70])
 rotate([90,0,90])
     equalizer();
     
-// Brazo superior
-translate([-80,-7,115])
+// Balancin
+translate([-55,-7,70+7.5])
 rotate([180,0,0])
     beam();
 
 // Cabezal
-translate([-150,-7,107.5])
+translate([-135,-7,70])
 rotate([90,0,0])
     horseHead();

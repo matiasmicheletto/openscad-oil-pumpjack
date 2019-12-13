@@ -1,7 +1,12 @@
 % Ecuaciones de movimiento mecanismo principal AIB
 
 clear all; clc; close all;
-delete 'anim.gif' % Borrar animacion si ya existe
+
+savegif = 0; % Guardar animacion como gif
+
+if savegif
+	delete 'anim.gif' % Borrar animacion si ya existe
+end
 
 % Dimensiones en mm del modelo
 a = 70; % Altura del punto de apoyo del balancin
@@ -56,9 +61,13 @@ for t=0:0.2:4*pi
 
 	pause(0.1);
 
-	saveas (1, 'snap.png'); % Exportar grafico a imagen (se puede pasar a matriz??)
-	im = imread('snap.png'); % Importar como matriz
-	imwrite(im,'anim.gif','gif','writemode','append','DelayTime',0); % Adjuntar a gif animado
+	if savegif
+		saveas (1, 'snap.png'); % Exportar grafico a imagen (se puede pasar a matriz??)
+		im = imread('snap.png'); % Importar como matriz
+		imwrite(im,'anim.gif','gif','writemode','append','DelayTime',0); % Adjuntar a gif animado
+	end
 end
 
-delete 'snap.png' % Borrar imagen temporal
+if savegif
+	delete 'snap.png' % Borrar imagen temporal
+end

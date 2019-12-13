@@ -1,40 +1,34 @@
 
 module beam(){
-    a = [100,10,15];     // Barra
-    rh = 2.3;           // Radio orificio para ajuste
-    b = [2*rh+2, 2];    // Dims ajuste
-    
-    module side(){
-        difference(){
-            union(){ // Envolvente rectangular con terminacion circular
-                cube([b.x, b.y, 3*a.z/2], center = true);
-                
-                translate([0, 0, 3*a.z/4])
-                rotate([90, 0, 0])
-                    cylinder(r = b.x/2, h = b.y, center = true);
-            }        
-            translate([0, 0, 3*a.z/4])
-            rotate([90, 0, 0])
-                cylinder(r = rh, h = b.y+1, center = true);
-        }
-    }
-
-    
+    e = 10;             // Extension luego de cada orificio de ajuste
+    a = [150+e,10,12];  // Dimensiones del balancin
+    rh = 1.7;           // Radio orificios para ajuste
+    b = [5, 2.3];       // Dims ajuste (radio exterior e interior
+    d = 5;              // Desplazamiento lateral respecto del punto de apoyo
     
     difference(){
         union(){
-            cube(a, center = true);
-
-            translate([0, (a.y - b.y)/2, a.z/4])
-                side();
-            translate([0, -(a.y - b.y)/2, a.z/4])
-                side();
+            // Barra
+            translate([d,0,0])
+                cube(a, center = true);                       
+            
+            // Punto de apoyo
+            translate([0,0,a.z/2])
+            rotate([90,0,0])
+                cylinder(r = b.x, h = a.y, center = true);
         }
         
-        translate([(a.x)/2-rh-2,0,0])
+        // Agujero para el eje del punto de apoyo
+        translate([0,0,a.z/2])
+        rotate([90,0,0])
+            cylinder(r = b.y, h = a.y+1, center = true);
+        
+        // Tornillo ajuste ecualizador
+        translate([(a.x)/2+d-e/2,0,0])
             cylinder(r = rh, h = a.z+1, center = true);
         
-        translate([-(a.x)/2+rh+2,0,0])
+        // Tornillo ajuste del cabezal
+        translate([-(a.x)/2+d+e/2,0,0])
         rotate([90,0,0])
             cylinder(r = rh, h = a.y+1, center = true);
     }

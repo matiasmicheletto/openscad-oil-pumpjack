@@ -1,16 +1,16 @@
 module crank(){
     H = 10;    // Altura de la palanca (Z)
     // Contrapesa
-    R = 100;    // Largo total de la palanca (X)
-    Wc = 60;    // Ancho de contrapesa (Y)
-    Lc = 25;    // Seccion de contrapesa (X)
+    R = 55;    // Largo total de la palanca (X)
+    Wc = 50;    // Ancho de contrapesa (Y)
+    Lc = 20;    // Seccion de contrapesa (X)
     // Palanca 
     Wp = 15;    // Ancho del brazo de la  palanca
     e = 5;     // Sobresaliente opuesta a la contrapesa
     // Orificios para ejes
     rh1 = 3.5;  // Radio orificio eje central
     rh2 = 3.5;  // Radio eje biela
-    dh12 = 50;  // Separacion entre orificio central y eje biela
+    dh12 = 30;  // Separacion entre orificio central y eje biela
 
     difference(){
         union(){
