@@ -3,7 +3,7 @@ module horseHead(){
     W = 10; // Ancho (X) 
     R = 150+W; // Radio de rotacion
 
-    L = 90; // Largo (Y)
+    L = 80; // Largo (Y)
     H = 20; // Espesor de la pieza (Z)
     a = 6; // Cateto base
     b = 5; // Cateto altura
@@ -15,7 +15,7 @@ module horseHead(){
     r2 = 1.7; // Radio del tornillo de ajuste
 
     // Desplazamiento del acople
-    delta = 7.5;
+    delta = 6;
 
     // Poligono de interseccion
     poly = [[0,-L/2],

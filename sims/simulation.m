@@ -10,11 +10,11 @@ end
 
 % Dimensiones en mm del modelo
 a = 70; % Altura del punto de apoyo del balancin
-b = 55; % Distancia del origen al eje central de la manivela
+b = 50; % Distancia horizontal entre el apoyo del balancin y el eje central de la manivela
 r1 = b+25; % Longitud entre el apoyo del balancin y el acople a la biela
-r2 = 30; % Longitud del balancin
-r3 = 70; % Distancia entre el apoyo del balancin y el cabezal
-d = 70 % Longitud de la biela
+r2 = 30; % Longitud de la manivela
+r3 = 65; % Distancia entre el apoyo del balancin y el cabezal
+d = 65 % Longitud de la biela
 
 % Parametros de la ecuacion (3 a 5 se calculan con t = 0)
 p = [
@@ -49,7 +49,7 @@ for t=0:0.2:4*pi
 	plot([0, b, r2*cos(t)+b, x(1), y(1)], [a, 0, r2*sin(t), x(2), y(2)],'o','markerfacecolor','k','markersize',10);
 	hold on
 	% Dibujar ejes
-	plot([b, r2*cos(t)+b], [0, r2*sin(t)],'linewidth',3); % Manivela
+	plot([b, r2*cos(t)+b], [0, r2*sin(t)],'b','linewidth',3); % Manivela
 	plot([r2*cos(t)+b, x(1)], [r2*sin(t), x(2)],'r','linewidth',3); % Biela
 	plot([0, x(1)], [a, x(2)],'g','linewidth',3); % Balancin (extremo posterior)
 	plot([0, y(1)], [a, y(2)],'k','linewidth',3); % Balancin (extremo anterior)
