@@ -1,9 +1,9 @@
 module equalizer(){
-    eq = [55,15,7]; // Dimensiones del travesanio
+    eq = [62,15,7]; // Dimensiones del ecualizador
     bm = [10,10]; // Medidas del brazo para el apoyo
     rh = 3.5; // Radio ejes
     rt = 1.7; // Radio tornillo ajuste
-    h = 12.5; // Largo de los cilindros de ajuste
+    h = 13; // Largo de los ejes de ajuste
     
     difference(){
         union(){
@@ -31,4 +31,5 @@ module equalizer(){
     }
 }
 
+//$fn = 250;
 equalizer();

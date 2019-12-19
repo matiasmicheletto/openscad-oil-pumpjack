@@ -1,9 +1,9 @@
 module horseHead(){
     
-    W = 10; // Ancho (X) 
-    R = 150+W; // Radio de rotacion
+    W = 11; // Ancho (X) 
+    R = 65+W; // Radio de rotacion
 
-    L = 80; // Largo (Y)
+    L = 70; // Largo (Y)
     H = 20; // Espesor de la pieza (Z)
     a = 6; // Cateto base
     b = 5; // Cateto altura
@@ -19,10 +19,10 @@ module horseHead(){
 
     // Poligono de interseccion
     poly = [[0,-L/2],
-            [W,-L/2],
+            [W+2,-L/2],
             [W+a,b-L/2],
             [W+a,L/2-b],
-            [W,L/2],
+            [W+2,L/2],
             [0,L/2]];
             
      difference(){
@@ -42,4 +42,5 @@ module horseHead(){
     }
 }
 
+//$fn = 250;
 horseHead();

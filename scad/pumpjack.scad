@@ -7,7 +7,7 @@ use <modules/Foot.scad>
 use <modules/WalkingBeam.scad>
 use <modules/HorseHead.scad>
 
-//$fn = 250;
+$fn = 250;
 
 // Soportes del motor
 translate([0,-12,25])
