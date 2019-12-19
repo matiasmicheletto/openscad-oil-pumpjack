@@ -6,14 +6,18 @@ To control the stepper motor position and speed, I designed a four-step sequence
 
 ![Schematics](hardware/Proteus/schematic.bmp)  
 
-This circuit was implemented on a perfboard. I should, and in fact I started doing the design in Kicad, but for agility reasons, I did it in Proteus.  
+This circuit was implemented on a perfboard. I should, and in fact, I started doing the design in Kicad, but for agility reasons, I ended up doing it in Proteus.  
 
 ![Perfboard](img/collage.jpg)  
 
 An Octave simulation was used to define and calculate all of the system dimensions. The script can be extended to perform a simple structural analysis, and to optimize the design in many ways.  
 
-![Simulation animation](sims/anim.gif)  
+![Simulation animation](octave/anim.gif)  
 
 I'm still printing the parts, but it will look like this:
 
 ![3D model](img/3d_screenshot.png)  
+
+This gif animation was made using the STL-to-GIF Python script of [Daniel Aguirre](https://github.com/DAguirreAg).  
+
+![Model animation](python/model.gif)  

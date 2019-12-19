@@ -1,6 +1,6 @@
 module pitman(){
-    pt = [12,65,5]; // Dimensiones de los brazos
-    rh = 3.5; // Radio ejes
+    pt = [13,65,5]; // Dimensiones de los brazos
+    rh = 3.75; // Radio ejes
     
     difference(){
         union(){
