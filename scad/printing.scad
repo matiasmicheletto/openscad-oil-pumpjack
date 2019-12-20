@@ -6,8 +6,9 @@ use <modules/Equalizer.scad>
 use <modules/Foot.scad>
 use <modules/WalkingBeam.scad>
 use <modules/HorseHead.scad>
+use <modules/Filler.scad>
 
-$fn = 250;
+//$fn = 250;
 
 // Soportes del motor
 translate([25,10,9])
@@ -29,6 +30,16 @@ translate([55,-20,2.5])
     pitman();
 translate([70,-20,2.5])
     pitman();
+
+// Arandelas de relleno
+translate([20,87,0])
+    filler();
+translate([40,87,0])
+    filler();
+translate([60,87,0])
+    filler();
+translate([80,87,0])
+    filler();
 
 // Ecualizador
 translate([0,-50,3.5])
