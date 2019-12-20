@@ -21,3 +21,14 @@ I'm still printing the parts, but it will look like this:
 This gif animation was made using the STL-to-GIF Python script of [Daniel Aguirre](https://github.com/DAguirreAg).  
 
 ![Model animation](python/model.gif)  
+
+
+### Additional materials
+
+  - 13 bolts M2.5 x 25mm  
+  - 17 nuts M2.5  
+  - 1 bolt M5  
+  - 5 nuts M5  
+  - 1 rubber band  
+  - 4 thumbtack  
+  - 1 150x90x20 mm wood plank  
