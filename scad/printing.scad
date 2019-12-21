@@ -1,5 +1,5 @@
 use <modules/Motor.scad>
-use <modules/Pulley.scad>
+use <modules/Gear.scad>
 use <modules/Crank.scad>
 use <modules/Pitman.scad>
 use <modules/Equalizer.scad>
@@ -62,6 +62,6 @@ rotate([90,180,0])
     
 // Poleas
 translate([-30,55,0])
-    pulley(true);
+    gear(true);
 translate([25,10,0])
-    pulley(false);
+    gear(false);
