@@ -4,6 +4,8 @@ I had (and still have) no knowledge nor experience in mechanical design but I al
 
 [![Demo funcionando](img/final.jpg)](https://youtu.be/eCK8AgMWHLU)
 
+## Electronics 
+
 To control the stepper motor position and speed, I designed a four-step sequencer that uses a two-bit counter based on JK master-slave flip-flops (74HC109) and an AND-gate based decoder (74HC08). An ULN2003 based driver (not displayed in the schematics) was used to amplify the output current of the sequencer.  
 
 ![Schematics](hardware/Proteus/schematic.bmp)  
@@ -11,6 +13,8 @@ To control the stepper motor position and speed, I designed a four-step sequence
 This circuit was implemented on a perfboard. I should, and in fact, I started doing the design in Kicad, but for agility reasons, I ended up doing it in Proteus.  
 
 ![Perfboard](img/collage.jpg)  
+
+## Simulations
 
 An Octave simulation was used to define and calculate all of the system dimensions. The script can be extended to perform a simple structural analysis, and to optimize the design in many ways.  
 
@@ -25,7 +29,7 @@ This gif animation was made using the STL-to-GIF Python script of [Daniel Aguirr
 
   - 13 bolts M2.5 x 25mm  
   - 17 nuts M2.5  
-  - 1 bolt M5  
+  - 1 bolt M5 x 65 mm  
   - 5 nuts M5  
   - 4 thumbtacks  
   - 1 150x90x20 mm wood plank  
