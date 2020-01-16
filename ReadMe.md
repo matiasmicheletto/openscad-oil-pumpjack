@@ -1,6 +1,8 @@
 # Animated scale pumpjack
 
-I had (and still have) no knowledge nor experience in mechanical design but I always wanted to make a completely parametric model in OpenSCAD. For this project, I designed all the parts of a scale model of a pumpjack, to be 3D-printed and driven by a 5V stepper motor. Its only purpose is to shake a tea bag and make a cool desktop gadget.  
+I had (and still have) no knowledge nor experience in mechanical design but I always wanted to make a completely parametric model in OpenSCAD. For this project, I designed all the parts of a scale model of an oil pumpjack, to be 3D-printed and driven by a 5V stepper motor. Its only purpose is to shake a tea bag and make a desktop gadget.  
+
+[![Demo funcionando](img/final.jpg)](https://youtu.be/eCK8AgMWHLU)
 
 To control the stepper motor position and speed, I designed a four-step sequencer that uses a two-bit counter based on JK master-slave flip-flops (74HC109) and an AND-gate based decoder (74HC08). An ULN2003 based driver (not displayed in the schematics) was used to amplify the output current of the sequencer.  
 
@@ -14,10 +16,6 @@ An Octave simulation was used to define and calculate all of the system dimensio
 
 ![Simulation animation](octave/anim.gif)  
 
-I'm still printing the parts, but it will look like this:
-
-![3D model](img/3d_screenshot.png)  
-
 This gif animation was made using the STL-to-GIF Python script of [Daniel Aguirre](https://github.com/DAguirreAg).  
 
 ![Model animation](python/model.gif)  
@@ -29,6 +27,5 @@ This gif animation was made using the STL-to-GIF Python script of [Daniel Aguirr
   - 17 nuts M2.5  
   - 1 bolt M5  
   - 5 nuts M5  
-  - 1 rubber band  
-  - 4 thumbtack  
+  - 4 thumbtacks  
   - 1 150x90x20 mm wood plank  
