@@ -1,4 +1,3 @@
-
 module filler(){
     re = 6.5;
     ri = 3.75;
@@ -10,5 +9,4 @@ module filler(){
     }
 }
 
-//$fn = 250;
 filler();

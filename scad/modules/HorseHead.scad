@@ -1,18 +1,18 @@
 module horseHead(){
     
-    W = 11; // Ancho (X) 
-    R = 65+W; // Radio de rotacion
+    W = 11;     // Ancho (X) 
+    R = 65+W;   // Radio de rotacion
 
-    L = 70; // Largo (Y)
-    H = 20; // Espesor de la pieza (Z)
-    a = 6; // Cateto base
-    b = 5; // Cateto altura
-    d = 1; // Espesor de la ranura
+    L = 70;     // Largo (Y)
+    H = 20;     // Espesor de la pieza (Z)
+    a = 6;      // Cateto base
+    b = 5;      // Cateto altura
+    d = 1;      // Espesor de la ranura
 
     // Acople al brazo
-    a1 = 12.5; // Ancho del cuadrante (Y)
-    b1 = 10.5; // Largo del cuadrante (Z)
-    r2 = 1.7; // Radio del tornillo de ajuste
+    a1 = 12.5;  // Ancho del cuadrante (Y)
+    b1 = 10.5;  // Largo del cuadrante (Z)
+    r2 = 1.7;   // Radio del tornillo de ajuste
 
     // Desplazamiento del acople
     delta = 6;
@@ -42,5 +42,4 @@ module horseHead(){
     }
 }
 
-//$fn = 250;
 horseHead();

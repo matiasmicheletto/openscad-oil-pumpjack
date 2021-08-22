@@ -1,28 +1,41 @@
-# Animated scale pumpjack
+# Parametric 3D model of an oil pumpjack
 
-I had (and still have) no knowledge nor experience in mechanical design but I always wanted to make a completely parametric model in OpenSCAD. For this project, I designed all the parts of a scale model of an oil pumpjack, to be 3D-printed and driven by a 5V stepper motor. Its only purpose is to shake a tea bag and make a desktop gadget.  
+This is a Code-CAD based project that consists on the parametric modeling of all the parts of a scale oil pumpjack to be 3D-printed and driven by a 5V stepper motor. 
 
-[![Demo funcionando](img/final.jpg)](https://youtu.be/eCK8AgMWHLU)
+<p align="center">
+  <img src="img/printed_model.gif" alt="Model"width="600"/>
+</p>
+
+
+## Parameters of the model
+
+This design is not based on any real model. Some basic parameters were selected to define the mechanical system dimensions:
+
+<p align="center">
+  <img src="img/system_general_geometry.png" alt="Dimensions"width="600"/>
+</p>
+
+An Octave simulation was used to test the resulting behavior of the machine depending on the selected parameters. The script was intended to optimize the design and can be extended to perform a structural or performance analysis.  
+
+<p align="center">
+  <img src="octave/anim.gif" alt="Simulation"width="600"/>
+</p>
+
 
 ## Electronics 
 
-To control the stepper motor position and speed, I designed a four-step sequencer that uses a two-bit counter based on JK master-slave flip-flops (74HC109) and an AND-gate based decoder (74HC08). An ULN2003 based driver (not displayed in the schematics) was used to amplify the output current of the sequencer.  
+To control the stepper motor position and speed, it is provided the design of a four-step sequencer that uses a two-bit counter based on JK master-slave flip-flops (74HC109) and an AND-gate based decoder (74HC08). A ULN2003 based driver (not displayed in the schematics) was used to amplify the output current of the sequencer.  
 
-![Schematics](hardware/Proteus/schematic.bmp)  
+<p align="center">
+  <img src="hardware/Proteus/schematic.bmp" alt="Schematics"width="600"/>
+</p>
 
-This circuit was implemented on a perfboard. I should, and in fact, I started doing the design in Kicad, but for agility reasons, I ended up doing it in Proteus.  
+This circuit was implemented on a perfboard. A CAD PCB design is also provided which follows the perfboard layout, however, its recommended to modify it to build a better PCB in order to achieve a more professional result.
 
-![Perfboard](img/collage.jpg)  
+<p align="center">
+  <img src="img/collage.jpg" alt="Perfboard"width="600"/>
+</p>
 
-## Simulations
-
-An Octave simulation was used to define and calculate all of the system dimensions. The script can be extended to perform a simple structural analysis, and to optimize the design in many ways.  
-
-![Simulation animation](octave/anim.gif)  
-
-This gif animation was made using the STL-to-GIF Python script of [Daniel Aguirre](https://github.com/DAguirreAg).  
-
-![Model animation](python/model.gif)  
 
 
 ### Additional materials

@@ -1,47 +1,42 @@
 use <GearGenerator.scad>
 
 module gear(motor){
-    H = 6;                          // Altura
-    R = (motor ? 15.5 : 7.6)+2;        // Radio exterior
+    H = 6;                          // Height
+    R = (motor ? 15.5 : 7.6)+2;     // External radius
     
-    Z = motor ? 20 : 10;            // Cantidad de dientes
+    Z = motor ? 20 : 10;            // Number of teeth
 
-    Ra = 2.50;                      // Radio eje
-    Rb = 1.55;                      // Achatamiento
+    Ra = 2.50;                      // Shaft radius
+    Rb = 1.55;                      // Stepper shaft shape
 
-    // Orificios
-    Nh = 6;                         // Cantidad
-    Rh = motor ? 3 : 1;             // Radio 
-    Dh = R/2;                       // Separacion desde el centro
+    // Holes
+    Nh = 6;                         // Number of holes
+    Rh = motor ? 3 : 1;             // Radius
+    Dh = R/2;                       // Distance from the center
 
     difference(){
-        
-        union(){ // Envolvente
+        union(){ // Envelope
             spur_gear(2*R/Z, Z, H, 0);
             cylinder(r = R-2, h = H);
         }
 
-        if(motor){// Eje achatado
+        if(motor){ // Shaft
             intersection(){
                 cylinder(r = Ra, h = H);
                 translate([0,0,H/2])
                     cube([Rb*2,Ra*2,H], center = true);
             }
         }else{
-            cylinder(r = Ra, h = H); // Eje
+            cylinder(r = Ra, h = H); // Shaft
         }
         
         // Orificios
         for(angle = [0 : 360/Nh : 360])
             translate([Dh*sin(angle),Dh*cos(angle),0])
-                cylinder(r = Rh, h = H); 
-
-        
+                cylinder(r = Rh, h = H);         
     }
 }
 
-
-//$fn = 250;
 gear(true);
 translate([35,0,0])
     gear(false);

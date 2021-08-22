@@ -1,73 +1,80 @@
-% Ecuaciones de movimiento mecanismo principal AIB
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Oil pumpjack mechanism simulation          %
+%                                                     %
+% This simulation allows to test different dimensions %
+% for the pumpjack mechanism.                         %
+%                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-clear all; clc; close all;
+clear all; close all;
 
-savegif = 0; % Guardar animacion como gif
+savegif = 0; % Change to 1 to save the animation as gif
 
 if savegif
-	delete 'anim.gif' % Borrar animacion si ya existe
+	delete 'anim.gif' % Delete animation if already exist
 end
 
-% Dimensiones en mm del modelo
-a = 70; % Altura del punto de apoyo del balancin
-b = 50; % Distancia horizontal entre el apoyo del balancin y el eje central de la manivela
-r1 = b+25; % Longitud entre el apoyo del balancin y el acople a la biela
-r2 = 30; % Longitud de la manivela
-r3 = 65; % Distancia entre el apoyo del balancin y el cabezal
-d = 65 % Longitud de la biela
+% Model dimensions (mm)
+a = 70; % Height of the foot (samson post), from the crank shaft to the walking beam's center bearing.
+b = 50; % Separation between the samson post and the crank shaft.
+r1 = 65; % Distance from the walking beam's center bearing to the horse head mount point.
+r2 = 75; % Distance from the center bearing to the equalizer bearing.
+r3 = 30; % Crank length.
+d = 65; % Pitman's length.
 
-% Parametros de la ecuacion (3 a 5 se calculan con t = 0)
+% Equation's parameters (3 to 5 are initially calculated for t = 0)
 p = [
 	-2*a,
-	a^2 - r1^2,
-	-2*r2*cos(0) - 2*b,
-	-2*r2*sin(0),
-	r2^2 + b^2 - d^2 + 2*r2*b*cos(0)
+	a^2 - r2^2,
+	-2*r3*cos(0) - 2*b,
+	-2*r3*sin(0),
+	r3^2 + b^2 - d^2 + 2*r3*b*cos(0)
 ];
 
-% Sistema de ecuaciones a resolver
+% System of equations to solve
 function y = eq_sys(x, p)
 	y(1) = x(1)^2 + x(2)^2 + p(1)*x(2) + p(2);
 	y(2) = x(1)^2 + x(2)^2 + p(3)*x(1) + p(4)*x(2) + p(5);
 endfunction
 
-x0 = [b; a]; % Solucion inicial para el solver
+x0 = [b; a]; % Solver's initial value
 
-for t=0:0.2:4*pi
+for t = 4*pi:-0.2:0 % Time goes backward to achieve clockwise rotation
 	clf;
 
-	% Recalcular parametros dependientes del tiempo
-	p(3:5) = [-2*r2*cos(t) - 2*b,-2*r2*sin(t),r2^2 + b^2 - d^2 + 2*r2*b*cos(t)];
+	% Update time-dependent parameters
+	p(3:5) = [-2*r3*cos(t) - 2*b,-2*r3*sin(t),r3^2 + b^2 - d^2 + 2*r3*b*cos(t)];
 
-	x = fsolve(@(x) eq_sys(x, p), x0); % Resolver sistema de ecuaciones para el instante actual
+	x = fsolve(@(x) eq_sys(x, p), x0); % Solve the system equations for the current time
 
-	% Calcular posicion del cabezal
-	th = asin((x(2)-a)/r1); % Angulo 
-	y = [-r3*cos(th), a-r3*sin(th)]; % Coordenadas
+	% Update the horse head position
+	th = asin((x(2)-a)/r2); % Angle 
+	y = [-r1*cos(th), a-r1*sin(th)]; % Coordinates
 
-	% Dibujar puntos	
-	plot([0, b, r2*cos(t)+b, x(1), y(1)], [a, 0, r2*sin(t), x(2), y(2)],'o','markerfacecolor','k','markersize',10);
+	% Draw points
+	plot([0, b, r3*cos(t)+b, x(1), y(1)], [a, 0, r3*sin(t), x(2), y(2)],'o','markerfacecolor','k','markersize',10);
 	hold on
-	% Dibujar ejes
-	plot([b, r2*cos(t)+b], [0, r2*sin(t)],'b','linewidth',3); % Manivela
-	plot([r2*cos(t)+b, x(1)], [r2*sin(t), x(2)],'r','linewidth',3); % Biela
-	plot([0, x(1)], [a, x(2)],'g','linewidth',3); % Balancin (extremo posterior)
-	plot([0, y(1)], [a, y(2)],'k','linewidth',3); % Balancin (extremo anterior)
-	title(['Angulo balancin:  ',num2str(360*th/2/pi),' [deg]']);
+	% Sraw axis
+	plot([b, r3*cos(t)+b], [0, r3*sin(t)],'r','linewidth',3); % Crank
+	plot([r3*cos(t)+b, x(1)], [r3*sin(t), x(2)],'b','linewidth',3); % Pitman
+	plot([0, x(1)], [a, x(2)],'g','linewidth',3); % Walking beam (rear end)
+	plot([0, y(1)], [a, y(2)],'g','linewidth',3); % Walking beam (front end)
+	title(['Walking beam current inclination angle:  ',num2str(360*th/2/pi),' [deg]']);
 	
-	% Fijar vista
+	% Fix axis view
 	axis([-150,150,-50,150]);
 	grid;
 
 	pause(0.1);
 
 	if savegif
-		saveas (1, 'snap.png'); % Exportar grafico a imagen (se puede pasar a matriz??)
-		im = imread('snap.png'); % Importar como matriz
-		imwrite(im,'anim.gif','gif','writemode','append','DelayTime',0); % Adjuntar a gif animado
+		% (Is it possible to convert image to matrix??)
+		saveas (1, 'snap.png'); % Export graphics to image
+		im = imread('snap.png'); % Import as a matrix
+		imwrite(im,'anim.gif','gif','writemode','append','DelayTime',0); % Add snapshot to animated gif
 	end
 end
 
 if savegif
-	delete 'snap.png' % Borrar imagen temporal
+	delete 'snap.png' % Delete current image
 end

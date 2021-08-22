@@ -1,12 +1,11 @@
-
 module beam(){
-    r1 = 75; // Distancia del cabezal al apoyo
-    r3 = 65; // Distancia del ecualizador al apoyo
-    e = 10; // Extension adicional total
-    a = [r1+r3+e,10,12];  // Dimensiones del balancin
-    rh = 1.7;           // Radio orificios para ajuste
-    b = [5, 2.3];       // Dims ajuste (radio exterior e interior
-    d = -5;              // Desplazamiento lateral respecto del punto de apoyo
+    r1 = 75;                // Distancia del cabezal al apoyo
+    r3 = 65;                // Distancia del ecualizador al apoyo
+    e = 10;                 // Extension adicional total
+    a = [r1+r3+e,10,12];    // Dimensiones del balancin
+    rh = 1.7;               // Radio orificios para ajuste
+    b = [5, 2.3];           // Dims ajuste (radio exterior e interior
+    d = -5;                 // Desplazamiento lateral respecto del punto de apoyo
     
     difference(){
         union(){

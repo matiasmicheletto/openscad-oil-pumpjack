@@ -1,4 +1,3 @@
-
 module foot(){
     
     a = [7,14,130];     // Poste vertical
