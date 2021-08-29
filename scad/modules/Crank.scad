@@ -1,4 +1,8 @@
 module crank(){
+    /* The crank is the piece that transfers the motor torque to 
+    the walking beam. It is composed of an arm and a counterweight. */
+    
+
     $fn = 50;
     
     H = 7;      // Part thickness (Z)
@@ -6,9 +10,9 @@ module crank(){
     Lc = 20;    // Counterweigth section (X)
     
     module arm(){
-        Wp = 15;    // Ancho del brazo de la palanca
-        e = 6;      // Sobresaliente opuesta a la contrapesa
-        rh1 = 2.3;  // Radio orificio eje central
+        Wp = 15;    // Arm width
+        e = 6;      // Arm extension opposite to the counterweight
+        rh1 = 2.3;  // Shaft hole radius
 
         difference(){
             translate([(R-Lc-rh1-e)/2, 0, 0])

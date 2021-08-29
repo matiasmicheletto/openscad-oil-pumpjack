@@ -1,7 +1,9 @@
 module filler(){
-    re = 6.5;
-    ri = 3.75;
-    h = 3;
+    /* Fillers for the pitmans arms shafts */
+
+    re = 6.5;  // Outer radius
+    ri = 3.75; // Inner radius
+    h = 3;     // Thickness
     
     difference(){
         cylinder(r = re, h = h);

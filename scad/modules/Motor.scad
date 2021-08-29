@@ -1,4 +1,6 @@
 module block(motor){ 
+    /* A block to hold the stepper motor */
+
     // Dimensiones exteriores del montaje
     W = 45;     // Ancho (en direccion X)    
     H = 40;     // Alto (en direccion Z)

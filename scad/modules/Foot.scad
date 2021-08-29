@@ -1,11 +1,13 @@
 module foot(){
+    /* This is the model for the samson post that holds the 
+    center of the walking beam in its place*/
     
-    a = [7,14,130];     // Poste vertical
-    b = [20.5,14,5];    // Pie horizontal largo
-    c = [12,14,5];      // Pie horizontal corto
-    rh = 2.3;           // Radio de orificio para eje de apoyo
-    re = 5;             // Radio exterior de la zona de apoyo
-    rv = 1.7;           // Radio para orificios de tornillos
+    a = [7,14,130];     // Samson post
+    b = [20.5,14,5];    // Long horizontal foot
+    c = [12,14,5];      // Short horizontal foot
+    rh = 2.3;           // Walking beam coupling hole radius
+    re = 5;             // Mounting point outer radius
+    rv = 1.7;           // Screw hole radius
     
     difference(){
         union(){
@@ -15,25 +17,26 @@ module foot(){
                 cube(b, center = true);
             translate([-c.x/2,0,c.z/2])
                 cube(c, center = true);
-            // Punto de apoyo
+            // Mounting point
             translate([0,0,a.z])
             rotate([90,0,0])
                 cylinder(r = re, h = a.y, center = true);
-            // Refuerzo de la base
+            // Foot reinforcement
             translate([0,0,re])
             rotate([90,0,0])
                 cylinder(r = re, h = a.y, center = true);
         }
-        // Ahuecar zona de ajuste
+
+        // Mounting point peg
         translate([0,0,a.z])
             cube([2*re,10,2*re], center = true);
         
-        // Orificio para el eje
+        // Mounting point hole
         translate([0,0,a.z])
         rotate([90,0,0])
             cylinder(r = rh, h = a.y+1, center = true);
         
-        // Orificios para tornillos de ajuste del pie al suelo
+        // Ground screw holes
         translate([b.x-rv-2,0,b.z/2])
             cylinder(r = rv, h = b.z, center = true);
         translate([-c.x+rv+2,0,b.z/2])

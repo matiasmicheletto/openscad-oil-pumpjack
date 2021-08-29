@@ -1,9 +1,13 @@
 module equalizer(){
-    eq = [62,15,7]; // Dimensiones del ecualizador
-    bm = [10,10];   // Medidas del brazo para el apoyo
-    rh = 3.5;       // Radio ejes
-    rt = 1.7;       // Radio tornillo ajuste
-    h = 13;         // Largo de los ejes de ajuste
+    /* The equalizer is attached to the walking beam and transfers
+    the power from the pitmans arms to it. Its length should match 
+    the separation between the cranks. */
+
+    eq = [62,15,7]; // Equalizers dimensions (x,y,z)
+    bm = [10,10];   // Walking beam coupling section
+    h = 13;         // Side shafts length
+    rh = 3.5;       // Side shafts radius
+    rt = 1.7;       // Screw hole radius
     
     difference(){
         union(){
@@ -22,10 +26,11 @@ module equalizer(){
             rotate([0,90,0])
                 cylinder(r = rh-0.1, h = h, center = true);
         }
-        // Apoyo del brazo 
+        
+        // Walking beam peg
         translate([0,(eq.y-bm.y)/2,0])
             cube([bm.x,bm.y,eq.z], center = true);
-        // Orificio para atornillar
+        // Screw hole
         rotate([90,0,0])
             cylinder(r = rt, h = eq.y, center = true);
     }

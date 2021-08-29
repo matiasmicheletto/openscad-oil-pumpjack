@@ -9,7 +9,7 @@ use <modules/HorseHead.scad>
 use <modules/Filler.scad>
 
 module pumpjack() {
-    // Soportes del motor
+    // Motor blocks
     translate([25,10,9])
     rotate([90,0,0])
         block(true);
@@ -17,20 +17,20 @@ module pumpjack() {
     rotate([90,0,180])
         block(false);
         
-    // Manivelas
+    // Cranks
     translate([25,50,3.5])
         crank();
     translate([45,70,3.5])
     rotate([0,0,180])
         crank();
         
-    // Bielas
+    // Pitmans arms
     translate([55,-20,2.5])
         pitman();
     translate([70,-20,2.5])
         pitman();
 
-    // Arandelas de relleno
+    // Fillers
     translate([20,87,0])
         filler();
     translate([40,87,0])
@@ -40,26 +40,26 @@ module pumpjack() {
     translate([80,87,0])
         filler();
 
-    // Ecualizador
+    // Equalizer
     translate([0,-50,3.5])
         equalizer();
         
-    // Balancin
+    // Walking beam
     translate([90,0,6])
     rotate([0,0,90])
         beam();
 
-    // Cabezal
+    // Horse head
     translate([40,-80,10])
     rotate([0,0,90])
         horseHead();
 
-    // Pie de soporte del balancin
+    // Samson post
     translate([105,80,6])
     rotate([90,180,0])
         foot();
         
-    // Poleas
+    // Gear box
     translate([-30,55,0])
         gear(true);
     translate([25,10,0])

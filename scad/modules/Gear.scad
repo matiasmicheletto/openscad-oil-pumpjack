@@ -1,6 +1,8 @@
 use <GearGenerator.scad>
 
 module gear(motor){
+    /* Reduction gears for motor and cranks */
+
     H = 6;                          // Height
     R = (motor ? 15.5 : 7.6)+2;     // External radius
     
@@ -30,7 +32,7 @@ module gear(motor){
             cylinder(r = Ra, h = H); // Shaft
         }
         
-        // Orificios
+        // Holes
         for(angle = [0 : 360/Nh : 360])
             translate([Dh*sin(angle),Dh*cos(angle),0])
                 cylinder(r = Rh, h = H);         
