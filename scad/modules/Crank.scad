@@ -9,6 +9,16 @@ module crank(){
     R = 55;     // Total crank lenght (X)
     Lc = 20;    // Counterweigth section (X)
     
+    module counterweight(){
+        Wc = 50;    // Counterweight width (Y)
+
+        intersection(){
+            cylinder(r = R, h = H, center = true);
+            translate([R-Lc/2, 0, 0])
+                cube([Lc, Wc, H+1], center = true);
+        }
+    }
+
     module arm(){
         Wp = 15;    // Arm width
         e = 6;      // Arm extension opposite to the counterweight
@@ -18,16 +28,6 @@ module crank(){
             translate([(R-Lc-rh1-e)/2, 0, 0])
                 cube([R-Lc+rh1+e, Wp, H], center = true);
             cylinder(r = rh1, h = H, center = true);
-        }
-    }
-    
-    module counterweight(){
-        Wc = 50;    // Counterweight width (Y)
-
-        intersection(){
-            cylinder(r = R, h = H, center = true);
-            translate([R-Lc/2, 0, 0])
-                cube([Lc, Wc, H+1], center = true);
         }
     }
 

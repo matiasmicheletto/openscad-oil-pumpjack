@@ -52,6 +52,8 @@ module pumpjack() {
     translate([27.5,-38,98])
     rotate([90,-4,0])
         pitman();
+    
+    // Equalizer
     translate([25,0,73.5+60])
     rotate([90,0,90])
         equalizer();
