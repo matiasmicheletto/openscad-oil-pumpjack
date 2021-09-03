@@ -1,7 +1,11 @@
 const crank = require('./modules/Crank');
 const equalizer = require('./modules/Equalizer');
+const filler = require('./modules/Filler');
+const pitman = require('./modules/Pitman');
+const block = require('./modules/Motor');
 
-const put = require('./position');
+const { put } = require('./helpers');
+
 
 // General model geometry
 const geometry = {
@@ -23,25 +27,68 @@ const radius = {
 // Model parts and positions
 const model = [
     {
+        part: block,  
+        params: {motor:true},      
+        position: [0,-12,25]   
+    },
+    {
+        part: block,          
+        position: [0,16.5,25]   
+    },
+    {
         part: crank,
         position: [0, -28, 60],
-        rotation: [Math.PI/2, 0, 0]
+        rotation: [90, -10, 0]
     },
     {
         part: crank,
         position: [0, 28, 60],
-        rotation: [-Math.PI/2, 0, 0]
+        rotation: [-90, -10, 0]
     },
     {
         part: equalizer,
-        rotation: [Math.PI/2, 0, Math.PI/2], 
+        rotation: [90, 0, 90], 
         position: [25, 0, 73.5+60]
+    },
+    {
+        part: filler,
+        rotation: [90, 0, 0], 
+        position: [25.5, 34, 131]   
+    },
+    {
+        part: filler,
+        rotation: [90, 0, 0], 
+        position: [25.5,-34,131]   
+    },
+    {
+        part: filler,
+        rotation: [90, 0, 0], 
+        position: [30,34,65]   
+    },
+    {
+        part: filler,
+        rotation: [90, 0, 0], 
+        position: [30,-34,65]   
+    },
+    {
+        part: pitman,
+        rotation: [90, -4, 0], 
+        position: [27.5,38,98]   
+    },
+    {
+        part: pitman,
+        rotation: [90, -4, 0], 
+        position: [27.5,-38,98]   
     }
 ];
 
 
 const main = () => model.map(m => put(
-        m.part({...geometry,...radius}), 
+        m.part({
+            ...geometry,
+            ...radius,
+            ...m.params}
+        ), 
         m.position, 
         m.rotation
     )

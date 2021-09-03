@@ -40,4 +40,4 @@ const equalizer = params => {
     );
 };
 
-module.exports = equalizer
+module.exports = equalizer;

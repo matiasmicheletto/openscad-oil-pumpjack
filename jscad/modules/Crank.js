@@ -52,4 +52,4 @@ const crank = params => {
     );
 };
 
-module.exports = crank
+module.exports = crank;
