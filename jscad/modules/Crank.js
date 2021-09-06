@@ -37,7 +37,7 @@ const pitmans_shaft = params => {
     );
 };
 
-const crank = params => {
+const crank = params => {    
     const p = {
         ...params,
         H: 7,   // Part thickness

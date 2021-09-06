@@ -5,7 +5,7 @@ const { subtract, union } = booleans;
 const { rotate } = require('../helpers');
 
 const envelope = params => {
-    const {W,L,H,hh,ww} = params;
+    const {W, L, H, hh, ww} = params;
     return union(
         cuboid({size:[W,L,H]}), // Envelope        
         
@@ -21,7 +21,7 @@ const envelope = params => {
 };
 
 const motor_hole = params => {
-    const {L, r2} = params;
+    const {L, shr} = params;
 
     const Rm = 14 + 0.1;    // Motor radius
     const d2 = 35;          // Distance between screw holes
@@ -44,10 +44,10 @@ const motor_hole = params => {
             // Motor screw holes
             translate([-d2/2,0,0],
                 rotate([90,0,0],
-                    cylinder({radius: r2, height: L}))),
+                    cylinder({radius: shr, height: L}))),
             translate([d2/2,0,0],
                 rotate([90,0,0],
-                    cylinder({radius: r2, height: L}))),
+                    cylinder({radius: shr, height: L}))),
             
             // Motor cable cover
             translate([0,0,-xc1],
@@ -60,20 +60,20 @@ const motor_hole = params => {
 };
 
 const shaft_hole = params => {
-    const {H, Rs, L, es} = params;
+    const {H, msr, L, es} = params;
     return translate([0, 0, H/2+es],
         rotate([90, 0, 0],
-            cylinder({radius: Rs, height: L}))
+            cylinder({radius: msr+0.7, height: L}))
     );
 };
 
 const screw_holes = params => {
-    const {W, ww, H, hh, r2} = params;
+    const {W, ww, H, hh, shr} = params;
     return union(
         translate([-W/2-ww/4, 0, -H/2-hh/2],
-            cylinder({radius: r2, height: hh})),
+            cylinder({radius: shr, height: hh})),
         translate([W/2+ww/4, 0, -H/2-hh/2],
-            cylinder({radius: r2, height: hh}))
+            cylinder({radius: shr, height: hh}))
     );
 };
 
@@ -88,9 +88,7 @@ const block = params => {
         H: 40,     // Height (Z)
         ww: 14,    // Mounting width
         hh: 5,     // Mounting height
-        Rs: 3,     // Shaft radius
-        es: 15,    // Excentricity of the shaft hole
-        r2: 1.7,   // Screw hole radius
+        es: 15     // Excentricity of the shaft hole
     }
 
     return subtract(

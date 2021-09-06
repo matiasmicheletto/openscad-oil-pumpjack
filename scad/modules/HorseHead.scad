@@ -10,7 +10,6 @@ module horseHead(){
     H = 20;     // Piece thickness (Z)
     a = 6;      // Base
     b = 5;      // Height
-    d = 1;      // Peg thickness
 
     // Coupling displacement
     delta = 6;
