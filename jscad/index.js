@@ -1,9 +1,10 @@
 const getParameterDefinitions = require('./parameters');
 const { put } = require('./helpers');
-const model = require('./assemble');
-//const model = require('./printing');
+const assemble = require('./assemble');
+const printing = require('./printing');
 
 const main = params => {
+    const model = params.print ? printing : assemble;
     return model.map(m => put(
         m.part({            
             ...m.params,

@@ -1,5 +1,6 @@
 const getParameterDefinitions = () => { 
-    return [        
+    return [       
+        { name: 'print', type: 'checkbox', checked: false, caption: 'Print layout' }, 
         { name: 'r1', type: 'int', initial: 75, caption: 'Walking beam section 1' },
         { name: 'r2', type: 'int', initial: 65, caption: 'Walking beam section 2' },
         { name: 'r3', type: 'int', initial: 30, caption: 'Crank length' },
