@@ -3,26 +3,31 @@ const { translate } = transforms;
 const { cuboid, cylinder } = primitives;
 const { subtract, union } = booleans;
 
-const pitman = () => {
-    // This is the model for the samson post that holds the center of the walking beam in its place
+const pitman = params => {
+    /* The pitman's arms are responsible for converting
+    the circular movement from the cranks to the linear 
+    movement of the walking beam*/
 
-    const pt = [13, 65, 5];
-    const rh = 3.75;
+    const d = params.d; // Arm length
+    const W = 13; // Arm width
+    const H = 5; // Arm thickness
+
+    const rh = params.psr+0.25;
 
     return subtract(
         union(
-            translate([0,pt[1]/2,0],
-                cuboid({size:pt})),
+            translate([0,d/2,0],
+                cuboid({size:[W-2, d, H]})),
             
-            cylinder({radius:pt[0]/2, height:pt[2]}),
+            cylinder({radius:W/2, height:H}),
             
-            translate([0,pt[1],0],
-                cylinder({radius:pt[0]/2, height:pt[2]}))
+            translate([0,d,0],
+                cylinder({radius:W/2, height:H}))
         ),        
-        cylinder({radius:rh, height:pt[2]}),
+        cylinder({radius:rh, height:H}),
         
-        translate([0,pt[1],0],
-            cylinder({radius:rh, height:pt[2]}))
+        translate([0,d,0],
+            cylinder({radius:rh, height:H}))
     );
 };
 

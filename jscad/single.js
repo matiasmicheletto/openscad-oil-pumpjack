@@ -6,11 +6,12 @@ const block = require('./modules/Motor');
 const beam = require('./modules/WalkingBeam');
 const head = require('./modules/HorseHead');
 const foot = require('./modules/Foot');
+const pulley = require('./modules/Pulley');
 
 // Single piece model
 const single = params => [
     {
-        part: equalizer(params),
+        part: pulley({motor:false,...params}),
         rotation: [0, 0, 0], 
         position: [0, 0, 0]   
     }

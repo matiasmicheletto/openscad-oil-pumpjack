@@ -3,49 +3,56 @@ const equalizer = require('./modules/Equalizer');
 const filler = require('./modules/Filler');
 const pitman = require('./modules/Pitman');
 const block = require('./modules/Motor');
+const pulley = require('./modules/Pulley');
 const beam = require('./modules/WalkingBeam');
 const head = require('./modules/HorseHead');
 const foot = require('./modules/Foot');
+const { sin, cos } = require('./helpers');
+const { getBeamAngle, getPitmansAngle } = require('./parameters');
 
 // Model parts in its positions
 const assemble = params => {
+    const {a, b, c, r1, r2, r3, t} = params;
 
-    const {a, b, c, d, r1, r2, r3, t} = params;
+    // Calculation of the walking beam angle from angle t and system geometry
+    const wba = getBeamAngle(params);
+    // Pitman arms angle    
+    const pma = getPitmansAngle(params, wba);
 
-    // Walking beam angle
-    const wba = -10; // This needs to be calculated
-
-    // Walking beam pivoting point
-    const B = [0, a+c];
-
-    // Horse head position
-    const Ap = [Math.cos(wba*Math.PI/180), -Math.sin(wba*Math.PI/180)];
-    const A = [-b-r1*Ap[0], 0, B[1] - r1*Ap[1]+6];    
-    // Equalizer position    
-    const C = [r2*Ap[0]-b, 0, B[1] + r2*Ap[1]];    
-
-    // Crank end position
-    const Dp = [Math.cos(t*Math.PI/180), Math.sin(t*Math.PI/180)];
-    const D = [r3*Dp[0], c - r3*Dp[1]];
+    // Points of the system geometry
+    const B = [-b, 0, a+c]; // Walking beam pivoting point
+    const A = [-b-r1*cos(wba), 0, B[2] + r1*sin(wba)+6]; // Horse head position    
+    const C = [r2*cos(wba)-b, 0, B[2] - r2*sin(wba)]; // Equalizer position
+    const D = [r3*cos(t), 0, c - r3*sin(t)]; // Crank end position   
 
     return [
         {
-            part: block({...params, motor:true}),  
+            part: block({...params, motor: true}),  
             p: {motor:true},      
-            position: [0,-12,25]   
+            position: [0, -12, c]   
         },
         {
             part: block(params),          
-            position: [0,16.5,25]   
+            position: [0, 16.5, c]   
+        },
+        {
+            part: pulley(params),
+            rotation: [90, 0, 0],
+            position: [0, 6, c]   
+        },
+        {
+            part: pulley({...params, motor: true}),
+            rotation: [90, 0, 0],
+            position: [0, 6, c-35]   
         },
         {
             part: crank(params),
-            position: [0, -28, 60],
+            position: [0, -28, c],
             rotation: [90, t, 0]
         },
         {
             part: crank(params),
-            position: [0, 28, 60],
+            position: [0, 28, c],
             rotation: [-90, t, 0]
         },
         {
@@ -61,32 +68,32 @@ const assemble = params => {
         {
             part: filler(params),
             rotation: [90, 0, 0], 
-            position: [D[0], 34, D[1]]   
+            position: [D[0], 34, D[2]]   
         },
         {
             part: filler(params),
             rotation: [90, 0, 0], 
-            position: [D[0], -34, D[1]]   
+            position: [D[0], -34, D[2]]   
         },
         {
             part: pitman(params),
-            rotation: [90, 0, 0], 
-            position: [D[0], 38, D[1]]   
+            rotation: [90, pma, 0], 
+            position: [D[0], 38, D[2]]   
         },
         {
             part: pitman(params),
-            rotation: [90, 0, 0], 
-            position: [D[0], -38, D[1]]   
-        },
-        {
-            part: beam(params),
-            rotation: [0, wba, 0], 
-            position: [-b, 0, a+c]   
+            rotation: [90, pma, 0], 
+            position: [D[0], -38, D[2]]   
         },
         {
             part: head(params),
             rotation: [90, wba, 0], 
             position: A   
+        },
+        {
+            part: beam(params),
+            rotation: [0, wba, 0], 
+            position: B   
         },
         {
             part: equalizer(params),
@@ -95,7 +102,7 @@ const assemble = params => {
         },
         {
             part: foot(params),
-            position: [-50,0,0]   
+            position: [-b,0,0]   
         }
     ];
 }

@@ -46,7 +46,7 @@ const head = params => {
                 extrudeLinear({height: H},
                     intersect(
                         translate([R-W, -delta, 0],
-                            circle({radius:R})),
+                            circle({radius:R, segments: 100})),
                         translate([-W, -delta, 0],
                             polygon( {points:poly} ))
                     )),

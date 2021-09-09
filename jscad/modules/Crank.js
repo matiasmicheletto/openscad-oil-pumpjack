@@ -1,54 +1,47 @@
-const { transforms, primitives, booleans } = require('@jscad/modeling');
-const { translate } = transforms;
+const { primitives, booleans } = require('@jscad/modeling');
 const { cuboid, cylinder } = primitives;
 const { subtract, union, intersect } = booleans;
 
-const arm = params => {
-    const {R, H, Lc, r3, msr} = params;
-    const Wp = 15; // Arm width
-    const e = r3/5; // Arm extension opposite to the counterweight    
+const crank = params => {        
+    const { r3, msr, psr } = params;
 
-    return subtract(
-        translate([(R - Lc - msr - e)/2, 0, 0],
-            cuboid({size:[R - Lc + msr + e, Wp, H]}),
-        ),
-        cylinder({radius: msr, height: H})
-    );
-};
+    const R = r3*11/6;  // Crank total radius
+    const H = 7;        // Part thickness        
+    const Lc = 20;      // Counterweight section
 
-const counterweight = params => {
-    const {R, H, Lc} = params;
-    const Wc = 50; // Counterweight width (Y)
+    const arm = () => {
+        const Wp = 15;  // Arm width
+        const e = r3/5; // Arm extension opposite to the counterweight    
     
-    return intersect(
-        cylinder({radius: R, height: H }),
-        translate([R-Lc/2, 0, 0],
-            cuboid({size:[Lc, Wc, H+1]}),
-        )
-    );
-};
-
-const pitmans_shaft = params => {
-    const { H, psr, r3 } = params;    
-    const hp = 9.5; // Shaft length
+        return subtract(
+            cuboid({size:[R - Lc + msr + e, Wp, H], center: [(R - Lc - msr - e)/2, 0, 0]}),
+            cylinder({radius: msr, height: H})
+        );
+    };
     
-    return translate([r3, 0, (hp+H)/2],  
-        cylinder({radius: psr-0.1, height:hp})
-    );
-};
-
-const crank = params => {    
-    const p = {
-        ...params,
-        H: 7,   // Part thickness
-        R: 55,  // Crank total radius
-        Lc: 20  // Counterweight section
-    }
+    const counterweight = () => {        
+        const Wc = 50; // Counterweight width (Y)
+        
+        return intersect(
+            cylinder({radius: R, height: H, segments: 100 }),
+            cuboid({size:[Lc, Wc, H+1], center:[R-Lc/2, 0, 0]}),
+        );
+    };
+    
+    const pitmans_shaft = () => {        
+        const hp = 11; // Shaft length
+        
+        return cylinder({
+            radius: psr-0.1, 
+            height:hp, 
+            center:[r3, 0, (hp+H)/2]
+        });
+    };
 
     return union(
-        arm(p),
-        counterweight(p),
-        pitmans_shaft(p) 
+        arm(),
+        counterweight(),
+        pitmans_shaft() 
     );
 };
 

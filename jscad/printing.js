@@ -3,72 +3,81 @@ const equalizer = require('./modules/Equalizer');
 const filler = require('./modules/Filler');
 const pitman = require('./modules/Pitman');
 const block = require('./modules/Motor');
+const pulley = require('./modules/Pulley');
 const beam = require('./modules/WalkingBeam');
 const head = require('./modules/HorseHead');
 const foot = require('./modules/Foot');
 
 // Model parts with printing layout
-const printing = p => [
+const printing = params => [
     {
-        part: block({...p, motor:true}),          
-        position: [5,10,9],
+        part: block({...params, motor:true}),          
+        position: [0,-25,9],
         rotation: [90,0,0]   
     },
     {
-        part: block(p),          
-        position: [-45,-10,4.5],
+        part: block(params),          
+        position: [-50,20,4.5],
         rotation: [90,0,180]
     },
     {
-        part: crank(p),
+        part: pulley(params),        
+        position: [0, 10, 0]   
+    },
+    {
+        part: pulley({...params, motor: true}),        
+        position: [-50, 50, 0]   
+    },
+    {
+        part: crank(params),
         position: [5,50,3.5]
     },
     {
-        part: crank(p),
+        part: crank(params),
         position: [25,70,3.5],
         rotation: [0, 0, 180]
     },
     {
-        part: equalizer(p),
+        part: equalizer(params),
         position: [-20, -50, 3.5],
         rotation: [0, 0, 90]
     },
     {
-        part: filler(p),
+        part: filler(params),
         position: [0,87,1]   
     },
     {
-        part: filler(p),        
+        part: filler(params),        
         position: [20,87,1]
     },
     {
-        part: filler(p),        
+        part: filler(params),        
         position: [40,87,1]
     },
     {
-        part: filler(p),        
+        part: filler(params),        
         position: [60,87,1]
     },
     {
-        part: pitman(p),        
+        part: pitman(params),        
         position: [50,-50,2.5]
     },
     {
-        part: pitman(p),        
+        part: pitman(params),        
         position: [35,-50,2.5]
     },
     {
-        part: beam(p),
+        part: beam(params),
         position: [70,0,12],
         rotation: [180,0,-90]
     },
     {
-        part: head(p),        
+        part: head(params),        
         position: [20,-70,10],
         rotation: [0,0,90]
     },
     {
-        part: foot(p),
+        part: foot(params),
         position: [85,80,7],
         rotation: [90,180,0]
     }

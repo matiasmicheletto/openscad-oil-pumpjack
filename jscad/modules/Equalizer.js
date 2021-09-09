@@ -11,7 +11,7 @@ const equalizer = params => {
 
     const { shr, psr } = params;
     
-    const shl = 13;             // Side shafts length
+    const shl = 11; // Side shafts length
 
     const L = 85;   // Part total length (Y)
     const W = 7.5;  // Part width (X)
@@ -34,8 +34,7 @@ const equalizer = params => {
     const body = () => union(
         cuboid({size:[W, L-2*shl, 2*psr]}),
         
-        translate([0, 0, br/2+psr],
-            cuboid({size:[W, L-2*shl-2*br, br]})),
+        cuboid({size:[W, L-2*shl-2*br, br], center:[0, 0, br/2+psr]}),
         
         translate([0, shl-L/2+br, psr],
             rotate([0,90,0],
@@ -52,11 +51,9 @@ const equalizer = params => {
     return subtract(
         body(),
         // Walking beam peg
-        translate([0, 0, h/2],
-            cuboid({size:[w, W, h]})),
+        cuboid({size:[w, W, h], center:[0, 0, h/2]}),
         // Screw hole
-        translate([0, 0, -psr/2],
-            cylinder({radius: shr, height: psr}))
+        cylinder({radius: shr, height: psr, center:[0, 0, -psr/2]})
     );
 };
 

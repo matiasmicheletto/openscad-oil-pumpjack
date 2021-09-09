@@ -7,11 +7,11 @@ const { rotate } = require('../helpers');
 const foot = params => {
     // This is the model for the samson post that holds the center of the walking beam in its place
 
-    const {msr, shr} = params;
-    const sp = [7,14,130];     // Samson post
-    const lf = [20.5,14,5];    // Long horizontal foot
-    const sf = [12,14,5];      // Short horizontal foot    
-    const sor = 5;            // Mounting point outer radius
+    const {a, c, msr, shr} = params;
+    const sp = [7, 14, a+c];    // Samson post
+    const lf = [20.5, 14, 5];   // Long horizontal foot
+    const sf = [12, 14, 5];     // Short horizontal foot    
+    const sor = 5;              // Mounting point outer radius
 
     return subtract(
         union(
