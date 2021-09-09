@@ -12,15 +12,20 @@ $fn = 50;
 
 module pumpjack(t, r1=65, r2=75, r3=30, a=60, b=50, c=60, d=65, shr=1.7, msr=2.3, psr=3.5) {
 
+    // The following functions allows to determine the angles of the walking beam
+    // and pitmans arms depending on the current crank angle "t"
     function get_wba(k, q, denom) = 270 + asin(k/denom) - asin(q/denom);
     function get_pma(a, b) = atan2(a.x-b.x, a.y-b.y);
 
+    // Parameters for compute the angles of moving parts
     p = r3*cos(-t) + b;
     q = r3*sin(-t) - a;
     k = (p*p + q*q + r2*r2 - d*d)/2/r2;
     denom = sqrt(p*p+q*q);    
 
+    // Walking beam angle
     wba = get_wba(k, q, denom);
+    // Pitmans arms angle
     pma = get_pma([r2*cos(wba)-b, a + c - r2*sin(wba)], [r3*cos(t), c - r3*sin(t)]);
 
     B = [-b, 0, a+c]; // Walking beam pivoting point
