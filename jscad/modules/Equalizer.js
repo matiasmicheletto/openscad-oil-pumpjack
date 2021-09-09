@@ -1,42 +1,62 @@
 const { transforms, primitives, booleans } = require('@jscad/modeling');
-const { translate, rotate } = transforms;
+const { translate } = transforms;
 const { cuboid, cylinder } = primitives;
 const { subtract, union } = booleans;
+const { rotate } = require('../helpers');
 
 const equalizer = params => {
+    /* The equalizer is attached to the walking beam and transfers
+    the power from the pitmans arms to it. Its length should match 
+    the separation between the cranks. */
+
     const { shr, psr } = params;
-    const eq = [62,15,7]; // Equalizer dimensions (x,y,z)
-    const bm = [10,10];   // Walking beam coupling section
-    const h = 13;         // Side shafts length
-    const side_shaft = {
-        radius: psr-0.1, 
-        height: h
+    
+    const shl = 13;             // Side shafts length
+
+    const L = 85;   // Part total length (Y)
+    const W = 7.5;  // Part width (X)
+    
+    const h = 10;   // walking beam peg height (Z)    
+    const w = 10;   // Walking beam width (Y)
+    
+    const br = h-psr;   // Rounder border radius
+
+    const rnd_border = {
+        radius: br, 
+        height: W
     }
     
-    return subtract(
-        union(
-            translate([0,-eq[1]/4,0],
-                cuboid({size:[eq[0],eq[1]/2,eq[2]]})),
-            translate([0,eq[1]/4,0],
-                cuboid({size:[eq[0]-eq[1],eq[1]/2,eq[2]]})),
-            translate([eq[0]/2-eq[1]/2,0,0],
-                cylinder({radius: eq[1]/2, height: eq[2]})),
-            translate([-eq[0]/2+eq[1]/2,0,0],
-                cylinder({radius: eq[1]/2, height: eq[2]})),
-            translate([(eq[0]+h)/2,-psr,0],
-                rotate([0,Math.PI/2,0],
-                    cylinder(side_shaft))),
-            translate([-(eq[0]+h)/2,-psr,0],
-                rotate([0,Math.PI/2,0],
-                    cylinder(side_shaft))),
-        ),
+    const side_shaft = () => {
+        return rotate([90, 0, 0],
+            cylinder({radius: psr-0.1, height: shl}));
+    };
+
+    const body = () => union(
+        cuboid({size:[W, L-2*shl, 2*psr]}),
         
+        translate([0, 0, br/2+psr],
+            cuboid({size:[W, L-2*shl-2*br, br]})),
+        
+        translate([0, shl-L/2+br, psr],
+            rotate([0,90,0],
+                cylinder(rnd_border))),
+        translate([0, L/2-shl-br, psr],
+            rotate([0, 90, 0],
+                cylinder(rnd_border))),
+
+        translate([0, (L-shl)/2,0], side_shaft()),
+            
+        translate([0, (shl-L)/2,0], side_shaft())                
+    );
+    
+    return subtract(
+        body(),
         // Walking beam peg
-        translate([0,(eq[1]-bm[1])/2,0],
-            cuboid({size:[bm[0],bm[1],eq[2]]})),
+        translate([0, 0, h/2],
+            cuboid({size:[w, W, h]})),
         // Screw hole
-        rotate([Math.PI/2,0,0],
-            cylinder({radius: shr, height: eq[1]}))
+        translate([0, 0, -psr/2],
+            cylinder({radius: shr, height: psr}))
     );
 };
 

@@ -9,12 +9,7 @@ const rotate = (angle, part) => transforms.rotate(
 );
 
 // This is a decorator to position parts in its final place   
-const put = (part, position, rotation) => translate(
-    position ? position : [0,0,0],
-    rotate(
-        rotation ? rotation : [0,0,0],
-        part
-    )
-);
+const place = (part, position = [0,0,0], rotation = [0,0,0]) => 
+    translate(position, rotate(rotation, part));
 
-module.exports = {put, rotate};
+module.exports = {place, rotate};

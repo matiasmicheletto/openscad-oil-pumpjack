@@ -7,68 +7,68 @@ const beam = require('./modules/WalkingBeam');
 const head = require('./modules/HorseHead');
 const foot = require('./modules/Foot');
 
-// Model parts in its positions
-const printing = [
+// Model parts with printing layout
+const printing = p => [
     {
-        part: block,  
-        params: {motor:true},      
+        part: block({...p, motor:true}),          
         position: [5,10,9],
         rotation: [90,0,0]   
     },
     {
-        part: block,          
+        part: block(p),          
         position: [-45,-10,4.5],
         rotation: [90,0,180]
     },
     {
-        part: crank,
+        part: crank(p),
         position: [5,50,3.5]
     },
     {
-        part: crank,
+        part: crank(p),
         position: [25,70,3.5],
         rotation: [0, 0, 180]
     },
     {
-        part: equalizer,
-        position: [-20, -50, 3.5]        
+        part: equalizer(p),
+        position: [-20, -50, 3.5],
+        rotation: [0, 0, 90]
     },
     {
-        part: filler,
+        part: filler(p),
         position: [0,87,1]   
     },
     {
-        part: filler,        
+        part: filler(p),        
         position: [20,87,1]
     },
     {
-        part: filler,        
+        part: filler(p),        
         position: [40,87,1]
     },
     {
-        part: filler,        
+        part: filler(p),        
         position: [60,87,1]
     },
     {
-        part: pitman,        
-        position: [50,-20,2.5]
+        part: pitman(p),        
+        position: [50,-50,2.5]
     },
     {
-        part: pitman,        
-        position: [35,-20,2.5]
+        part: pitman(p),        
+        position: [35,-50,2.5]
     },
     {
-        part: beam,
-        position: [70,0,6],
+        part: beam(p),
+        position: [70,0,12],
+        rotation: [180,0,-90]
+    },
+    {
+        part: head(p),        
+        position: [20,-70,10],
         rotation: [0,0,90]
     },
     {
-        part: head,        
-        position: [20,-80,0],
-        rotation: [0,0,90]
-    },
-    {
-        part: foot,
+        part: foot(p),
         position: [85,80,7],
         rotation: [90,180,0]
     }

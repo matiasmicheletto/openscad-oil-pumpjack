@@ -11,15 +11,17 @@ const pitman = () => {
 
     return subtract(
         union(
-            cuboid({size:pt}),
-            translate([0,-pt[1]/2,0],
-                cylinder({radius:pt[0]/2, height:pt[2]})),
             translate([0,pt[1]/2,0],
+                cuboid({size:pt})),
+            
+            cylinder({radius:pt[0]/2, height:pt[2]}),
+            
+            translate([0,pt[1],0],
                 cylinder({radius:pt[0]/2, height:pt[2]}))
-        ),
-        translate([0,-pt[1]/2,0],
-            cylinder({radius:rh, height:pt[2]})),
-        translate([0,pt[1]/2,0],
+        ),        
+        cylinder({radius:rh, height:pt[2]}),
+        
+        translate([0,pt[1],0],
             cylinder({radius:rh, height:pt[2]}))
     );
 };

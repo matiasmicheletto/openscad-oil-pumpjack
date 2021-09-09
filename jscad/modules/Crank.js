@@ -33,7 +33,7 @@ const pitmans_shaft = params => {
     const hp = 9.5; // Shaft length
     
     return translate([r3, 0, (hp+H)/2],  
-        cylinder({radius:psr, height:hp})
+        cylinder({radius: psr-0.1, height:hp})
     );
 };
 

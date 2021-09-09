@@ -1,15 +1,14 @@
 const getParameterDefinitions = require('./parameters');
-const { put } = require('./helpers');
+const { place } = require('./helpers');
 const assemble = require('./assemble');
 const printing = require('./printing');
+const single = require('./single');
 
 const main = params => {
     const model = params.print ? printing : assemble;
-    return model.map(m => put(
-        m.part({            
-            ...m.params,
-            ...params
-        }), 
+    //const model = single;
+    return model(params).map(m => place(
+        m.part, 
         m.position, 
         m.rotation
     ));

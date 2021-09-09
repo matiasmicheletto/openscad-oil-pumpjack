@@ -8,7 +8,7 @@ const head = params => {
     // The horse head is placed at the end of the walking beam and is responsible for the mechanical transmission of the movement to the piston in the underground pump.
 
     const W = 12;     // Width (X) 
-    const R = 65+W;   // Rotation radius
+    const R = params.r1+W;   // Rotation radius
 
     const L = 70;     // Length (Y)
     const H = 20;     // Piece thickness (Z)
@@ -34,21 +34,24 @@ const head = params => {
         const b1 = 10.5;  // Length (Z)        
 
         return union(
-            translate([(W+a)/2+5, delta, H/2],
+            translate([(a-W)/2+5, 0, H/2],
                 cuboid({size:[W+a,a1,b1]})),
-            translate([W, delta, H/2],
+            translate([0, 0, H/2],
                 cylinder({radius: shr, height: H}))
         );
     };
 
-    return subtract(
-        extrudeLinear({height: H},
-            intersect(
-                translate([R,0,0],
-                    circle({radius:R})),
-                polygon( {points:poly} )
-            )),
-        coupling_peg()
+    return translate([0, 0, -H/2],
+            subtract(
+                extrudeLinear({height: H},
+                    intersect(
+                        translate([R-W, -delta, 0],
+                            circle({radius:R})),
+                        translate([-W, -delta, 0],
+                            polygon( {points:poly} ))
+                    )),
+                coupling_peg()
+            )
     );
 };
 
