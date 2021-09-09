@@ -1,31 +1,25 @@
-module block(motor){ 
-    /* A block to hold the stepper motor */
+module block(motor, shr, msr, c){ 
+    /* A block to hold the stepper motor and main shaft */
 
-    // Outer dimensions
-    W = 45;     // Width (X)    
-    L = motor ? 18 : 9; // Length (Y)
-    H = 40;     // Height (Z)
-    
-    ww = 14;    // Mounting width
-    hh = 5;     // Mounting height
-
-    Rs = 3;     // Shaft radius
     es = 15;    // Excentricity of the shaft hole
-
-    r2 = 1.7;   // Screw hole radius
+    L = 45;     // Width (X)    
+    W = motor ? 18 : 9; // Length (Y)
+    hh = 5;     // Mounting height
+    H = c-es-hh;     // Height (Z)
     
     module envelope() {
         union(){
-            cube([W,L,H],center = true); // Envelope        
+            translate([0, 0, -H/2-es])
+                cube([L, W, H], center = true); // Envelope        
             
             // Rounded top
-            translate([0,0,H/2])
-            rotate([90,0,0])
-                cylinder(r = W/2, h = L, center = true);    
+            translate([0, 0, -es])
+                rotate([90, 0, 0])
+                    cylinder(r = L/2, h = W, center = true);    
             
             // Mounting
-            translate([0,0,-H/2-hh/2])
-                cube([W+ww,L,hh],center = true); 
+            translate([0, 0, -H-hh/2-es])
+                cube([L + 8*shr, W, hh], center = true); 
         }
     }
     
@@ -45,38 +39,38 @@ module block(motor){
         xc3 = sqrt(Rm*Rm-lc3*lc3/4)+wc3/2;
         
         union(){
-            rotate([90,0,0])
-                cylinder(r = Rm, h = L+0.2, center = true);
+            translate([0,0,-H/2-es])
+                rotate([90,0,0])
+                    cylinder(r = Rm, h = W+0.2, center = true);
                
             // Motor screw holes
-            translate([-d2/2,0,0])
-            rotate([90,0,0])
-                cylinder(r = r2, h = L, center = true);    
-            translate([d2/2,0,0])
-            rotate([90,0,0])
-                cylinder(r = r2, h = L, center = true);
+            translate([-d2/2, 0, -H/2-es])
+            rotate([90, 0, 0])
+                cylinder(r = shr, h = W, center = true);    
+            translate([d2/2, 0, -H/2-es])
+            rotate([90, 0, 0])
+                cylinder(r = shr, h = W, center = true);
             
             // Motor cable cover
-            translate([0,0,-xc1])
-                cube([lc1,L,wc1], center = true);
-            translate([0,0,-xc2])
-                cube([lc2,L,wc2], center = true);
-            translate([0,0,-xc3])
-                cube([lc3,L,wc3], center = true);    
+            translate([0, 0, -xc1-H/2-es])
+                cube([lc1, W, wc1], center = true);
+            translate([0, 0, -xc2-H/2-es])
+                cube([lc2, W, wc2], center = true);
+            translate([0, 0, -xc3-H/2-es])
+                cube([lc3, W, wc3], center = true);    
         }
     }
     
     module shaft_hole(){
-        translate([0,0,H/2+es])
         rotate([90,0,0])
-            cylinder(r = Rs, h = L, center = true);    
+            cylinder(r = msr+0.7, h = W, center = true);    
     }
     
     module screw_holes(){
-        translate([-W/2-ww/4,0,-H/2-hh/2])
-            cylinder(r = r2, h = hh, center = true);    
-        translate([W/2+ww/4,0,-H/2-hh/2])
-            cylinder(r = r2, h = hh, center = true);
+        translate([-L/2-2*shr, 0, -H-hh/2-es])
+            cylinder(r = shr, h = hh, center = true);    
+        translate([L/2+2*shr, 0, -H-hh/2-es])
+            cylinder(r = shr, h = hh, center = true);
     }
 
     difference(){ 
@@ -87,6 +81,6 @@ module block(motor){
     }
 }
 
-block(true);
+block(true, 1.7, 2.3, 60);
 translate([0,28.5,0])
-    block(false);
+    block(false, 1.7, 2.3, 60);

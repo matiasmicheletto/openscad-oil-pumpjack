@@ -1,39 +1,47 @@
-module equalizer(){
+module equalizer(shr, psr){
     /* The equalizer is attached to the walking beam and transfers
     the power from the pitmans arms to it. Its length should match 
     the separation between the cranks. */
+    
+    shl = 11; // Side shafts length
 
-    eq = [62,15,7]; // Equalizers dimensions (x,y,z)
-    bm = [10,10];   // Walking beam coupling section
-    h = 13;         // Side shafts length
-    rh = 3.5;       // Side shafts radius
-    rt = 1.7;       // Screw hole radius
+    L = 85;   // Part total length (Y)
+    W = 7.5;  // Part width (X)
+    
+    h = 10;   // walking beam peg height (Z)    
+    w = 10;   // Walking beam width (Y)
+    
+    br = h-psr;   // Rounder border radius
+    
+    module body() {
+        cube([W, L-2*shl, 2*psr], center = true);
+        
+        translate([0, 0, br/2+psr])
+            cube([W, L-2*shl-2*br, br], center = true);
+        
+        translate([0, shl-L/2+br, psr])
+            rotate([0,90,0])
+                cylinder(r = br, h = W, center = true);
+        translate([0, L/2-shl-br, psr])
+            rotate([0, 90, 0])
+                cylinder(r = br, h = W, center = true);
+
+        translate([0, (L-shl)/2, 0])
+            rotate([90, 0, 0])
+                cylinder(r = psr-0.1, h = shl, center = true);
+            
+        translate([0, (shl-L)/2, 0]) 
+            rotate([90, 0, 0])
+                cylinder(r = psr-0.1, h = shl, center = true);
+    }
     
     difference(){
-        union(){
-            translate([0,-eq.y/4,0])
-                cube([eq.x,eq.y/2,eq.z], center = true);
-            translate([0,eq.y/4,0])
-                cube([eq.x-eq.y,eq.y/2,eq.z], center = true);
-            translate([eq.x/2-eq.y/2,0,0])
-                cylinder(r = eq.y/2, h = eq.z, center = true);
-            translate([-eq.x/2+eq.y/2,0,0])
-                cylinder(r = eq.y/2, h = eq.z, center = true);
-            translate([(eq.x+h)/2,-rh,0])
-            rotate([0,90,0])
-                cylinder(r = rh-0.1, h = h, center = true);
-            translate([-(eq.x+h)/2,-rh,0])
-            rotate([0,90,0])
-                cylinder(r = rh-0.1, h = h, center = true);
-        }
-        
-        // Walking beam peg
-        translate([0,(eq.y-bm.y)/2,0])
-            cube([bm.x,bm.y,eq.z], center = true);
-        // Screw hole
-        rotate([90,0,0])
-            cylinder(r = rt, h = eq.y, center = true);
+        body();
+        translate([0,0,h/2])
+            cube([w, W, h], center = true);
+        translate([0,0,-psr/2])
+            cylinder(r = shr, h = psr, center = true);
     }
 }
 
-equalizer();
+equalizer(1.7, 3.5);

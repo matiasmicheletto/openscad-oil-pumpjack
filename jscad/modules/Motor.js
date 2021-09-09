@@ -6,7 +6,7 @@ const { rotate } = require('../helpers');
 
 
 const block = params => {
-    // A block to hold the stepper motor
+    // A block to hold the stepper motor and main shaft
 
     const {shr, msr, motor, c} = params;
     

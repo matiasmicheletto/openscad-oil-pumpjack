@@ -1,41 +1,30 @@
-module beam(){
-    /* The walking beam acts as a class I lever transferring
-    the movement from the pitmans arms to the horse head. */
+module beam(r1, r2, shr, msr){
+    /* The walking beam acts as a class I lever transferring the 
+     * movement from the pitmans arms to the horse head. */
 
-    r1 = 75;                // Distance from horse head to mounting point (fulcrum).
-    r2 = 65;                // Distance from the equalizer to the middle mounting point.
-    e = 10;                 // Total added extension (beyond mounting points)
-    a = [r1+r2+e,10,12];    // Walking beam dimensions
-    rh = 1.7;               // Screw holes radius
-    b = [5, 2.3];           // Outer and inner radius of the pivoting point
-    d = -5;                 // Side displacement
+    H = 12; // Height
+    W = 10; // Width
+    e = 10; // Total added extension
     
     difference(){
-        union(){
-            // Walking beam body
-            translate([d,0,0])
-                cube(a, center = true);                       
+        union(){            
+            translate([(r2-r1)/2,0,H/2]) // Walking beam body
+                cube([r1+r2+e, W, H], center = true);                       
             
-            // Fulcrum or pivoting point
-            translate([0,0,a.z/2])
-            rotate([90,0,0])
-                cylinder(r = b.x, h = a.y, center = true);
+            rotate([90, 0, 0]) // Fulcrum or pivoting point
+                cylinder(r = 2*msr, h = W, center = true);
         }
         
-        // Pivoting point hole
-        translate([0,0,a.z/2])
-        rotate([90,0,0])
-            cylinder(r = b.y, h = a.y+1, center = true);
+        rotate([90,0,0]) // Pivoting point hole
+            cylinder(r = msr, h = W+1, center = true);
         
-        // Equalizer mounting screw hole
-        translate([-r1,0,0])
-            cylinder(r = rh, h = a.z+1, center = true);
+        translate([r2,0,H/2]) // Equalizer mounting screw hole
+            cylinder(r = shr, h = H+1, center = true);
         
-        // Horse head screw hole
-        translate([r2,0,0])
+        translate([-r1,0,H/2]) // Horse head screw hole
         rotate([90,0,0])
-            cylinder(r = rh, h = a.y+1, center = true);
+            cylinder(r = shr, h = W+1, center = true);
     }
 }
 
-beam();
+beam(65, 75, 1.7, 2.3);

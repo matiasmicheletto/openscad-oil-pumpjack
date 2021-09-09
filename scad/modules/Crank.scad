@@ -1,13 +1,21 @@
-module crank(){
+module crank(r3, msr, psr){
     /* The crank is the piece that transfers the motor torque to 
     the walking beam. It is composed of an arm and a counterweight. */
     
-
-    $fn = 50;
+    R = r3*11/6; // Crank total radius
+    H = 7;       // Part thickness (Z)    
+    Lc = 20;     // Counterweigth section (X)
     
-    H = 7;      // Part thickness (Z)
-    R = 55;     // Total crank lenght (X)
-    Lc = 20;    // Counterweigth section (X)
+    module arm(){
+        Wp = 15;    // Arm width
+        e = r3/5;   // Arm extension opposite to the counterweight        
+
+        difference(){
+            translate([(R-Lc-msr-e)/2, 0, 0])
+                cube([R-Lc+msr+e, Wp, H], center = true);
+            cylinder(r = msr, h = H, center = true);
+        }
+    }
     
     module counterweight(){
         Wc = 50;    // Counterweight width (Y)
@@ -19,32 +27,18 @@ module crank(){
         }
     }
 
-    module arm(){
-        Wp = 15;    // Arm width
-        e = 6;      // Arm extension opposite to the counterweight
-        rh1 = 2.3;  // Shaft hole radius
-
-        difference(){
-            translate([(R-Lc-rh1-e)/2, 0, 0])
-                cube([R-Lc+rh1+e, Wp, H], center = true);
-            cylinder(r = rh1, h = H, center = true);
-        }
-    }
-
     module pitmans_shaft(){
-        rh2 = 3.5;  // Radio eje biela
-        hp = 12.5;  // Altura eje de biela
-        dh12 = 30;  // Separacion entre orificio central y eje biela
+        hp = 11;  // Altura eje de biela
         
-        translate([dh12, 0, H])
-            cylinder(r = rh2, h = hp, center = true);
+        translate([r3, 0, (H+hp)/2])
+            cylinder(r = psr-0.1, h = hp, center = true);
     }
 
     union(){
-        counterweight();
         arm();
+        counterweight();
         pitmans_shaft();
     }
 }
 
-crank();
+crank(30, 2.3, 3.5);

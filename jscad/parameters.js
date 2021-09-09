@@ -4,16 +4,16 @@ const getParameterDefinitions = () => {
     return [       
         { name: 'print', type: 'checkbox', checked: false, caption: 'Print layout' }, 
         { name: 't', type: 'slider', min: 0, max: 360, initial: 10, caption: 'Crank angle' },
-        { name: 'r1', type: 'int', initial: 65, caption: 'Walking beam front length' },
-        { name: 'r2', type: 'int', initial: 75, caption: 'Walking beam rear length' },
-        { name: 'a', type: 'int', initial: 70, caption: 'Walking beam height' },
-        { name: 'r3', type: 'int', initial: 30, caption: 'Crank length' },
-        { name: 'c', type: 'int', initial: 60, caption: 'Crank shaft height' },
-        { name: 'b', type: 'int', initial: 50, caption: 'Samson post position' },
-        { name: 'd', type: 'int', initial: 65, caption: 'Pitmans arms lenght' },
-        { name: 'shr', type: 'float', initial: 1.7, caption: 'Screw holes radius' },
-        { name: 'msr', type: 'float', initial: 2.3, caption: 'Main shaft radius' },
-        { name: 'psr', type: 'float', initial: 3.5, caption: 'Pitmans shaft radius' }
+        { name: 'r1', type: 'int', min:50, max:100, initial: 65, caption: 'Walking beam front length' },
+        { name: 'r2', type: 'int', min:50, max:100, initial: 75, caption: 'Walking beam rear length' },
+        { name: 'a', type: 'int', min:50, max:100, initial: 70, caption: 'Walking beam height' },
+        { name: 'r3', type: 'int', min:20, max:40, initial: 30, caption: 'Crank length' },
+        { name: 'c', type: 'int', min:50, max:70, initial: 60, caption: 'Crank shaft height' },
+        { name: 'b', type: 'int', min:40, max:60, initial: 50, caption: 'Samson post position' },
+        { name: 'd', type: 'int', min:50, max:70, initial: 65, caption: 'Pitmans arms lenght' },
+        { name: 'shr', type: 'float', min:1, max:4, initial: 1.7, caption: 'Screw holes radius' },
+        { name: 'msr', type: 'float', min:1, max:4, initial: 2.3, caption: 'Main shaft radius' },
+        { name: 'psr', type: 'float', min:1, max:5, initial: 3.5, caption: 'Pitmans shaft radius' }
     ]
 };
 

@@ -43,9 +43,9 @@ const equalizer = params => {
             rotate([0, 90, 0],
                 cylinder(rnd_border))),
 
-        translate([0, (L-shl)/2,0], side_shaft()),
+        translate([0, (L-shl)/2, 0], side_shaft()),
             
-        translate([0, (shl-L)/2,0], side_shaft())                
+        translate([0, (shl-L)/2, 0], side_shaft())                
     );
     
     return subtract(

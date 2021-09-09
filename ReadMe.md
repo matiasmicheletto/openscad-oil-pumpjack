@@ -3,7 +3,7 @@
 This is a Code-CAD based project that consists on the parametric modeling of all the parts of a scale oil pumpjack to be 3D-printed and driven by a 5V stepper motor. 
 
 <p align="center">
-  <img src="img/printed_model.gif" alt="Model"width="600"/>
+  <img src="img/videos/printed_model.gif" alt="Model"width="600"/>
 </p>
 
 
@@ -12,7 +12,7 @@ This is a Code-CAD based project that consists on the parametric modeling of all
 This design is not based on any real model. Some basic parameters were selected to define the mechanical system dimensions:
 
 <p align="center">
-  <img src="img/system_general_geometry.png" alt="Dimensions"width="600"/>
+  <img src="img/geometry/system_general_geometry.png" alt="Dimensions"width="600"/>
 </p>
 
 An Octave simulation was used to test the resulting behavior of the machine depending on the selected parameters. The script was intended to optimize the design and can be extended to perform a structural or performance analysis.  
@@ -33,7 +33,7 @@ To control the stepper motor position and speed, it is provided the design of a 
 This circuit was implemented on a perfboard. A CAD PCB design is also provided which follows the perfboard layout, however, its recommended to modify it to build a better PCB in order to achieve a more professional result.
 
 <p align="center">
-  <img src="img/collage.jpg" alt="Perfboard"width="600"/>
+  <img src="img/photos/collage.jpg" alt="Perfboard"width="600"/>
 </p>
 
 
