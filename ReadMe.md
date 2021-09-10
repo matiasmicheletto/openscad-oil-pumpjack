@@ -3,19 +3,19 @@
 This is a Code-CAD based project that consists on the parametric modeling of all the parts of a scale oil pumpjack to be 3D-printed and driven by a 5V stepper motor. 
 
 <p align="center">
-  <img src="img/videos/printed_model.gif" alt="Model"width="600"/>
+  <img src="img/videos/openscad_params.gif" alt="Model"width="600"/>
 </p>
 
 
 ## Parameters of the model
 
-This design is not based on any real model. Some basic parameters were selected to define the mechanical system dimensions:
+This design is not based on any real model. Some basic parameters were selected to define the mechanical system dimensions.
 
 <p align="center">
   <img src="img/geometry/system_general_geometry.png" alt="Dimensions"width="600"/>
 </p>
 
-An Octave simulation was used to test the resulting behavior of the machine depending on the selected parameters. The script was intended to optimize the design and can be extended to perform a structural or performance analysis.  
+An Octave simulation was used to test the resulting behavior of the machine depending on the selected parameters. The script was intended to optimize the design in some way and can be extended to perform a structural or a performance analysis.  
 
 <p align="center">
   <img src="octave/anim.gif" alt="Simulation"width="600"/>
@@ -30,12 +30,20 @@ To control the stepper motor position and speed, it is provided the design of a 
   <img src="hardware/Proteus/schematic.bmp" alt="Schematics"width="600"/>
 </p>
 
-This circuit was implemented on a perfboard. A CAD PCB design is also provided which follows the perfboard layout, however, its recommended to modify it to build a better PCB in order to achieve a more professional result.
+This circuit was implemented on a perfboard. A CAD PCB design is also provided which follows the perfboard layout, however, its recommended to modify it to build a better design in order to achieve a more aesthetic result.
 
 <p align="center">
   <img src="img/photos/collage.jpg" alt="Perfboard"width="600"/>
 </p>
 
+
+## Printed model
+
+The ready to print files are available in the [./stl](stl) folder.
+
+<p align="center">
+  <img src="img/videos/printed_model.gif" alt="Model"width="600"/>
+</p>
 
 
 ### Additional materials
