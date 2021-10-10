@@ -2,7 +2,10 @@ const { primitives, booleans } = require('@jscad/modeling');
 const { cuboid, cylinder } = primitives;
 const { subtract, union, intersect } = booleans;
 
-const crank = params => {        
+const crank = params => {      
+    /* The crank is the part that transfers the motor torque to 
+    the walking beam. It is composed of an arm and a counterweight. */
+
     const { r3, msr, psr } = params;
 
     const R = r3*11/6;  // Crank total radius
