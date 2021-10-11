@@ -8,6 +8,7 @@ module pitman(d, psr){
     rh = psr+0.25;
     
     difference(){
+        color([.5,.5,.5])
         union(){
             translate([0, d/2, 0])
                 cube([W-2, d, H], center = true);

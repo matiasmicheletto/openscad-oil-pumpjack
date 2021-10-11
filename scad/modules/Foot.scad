@@ -8,6 +8,7 @@ module foot(a, c, msr, shr){
     sor = 5;              // Mounting point outer radius
     
     difference(){
+        color([.5,.5,.5])
         union(){
             translate([0, 0, sp.z/2])
                 cube(sp, center = true);

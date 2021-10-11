@@ -17,6 +17,7 @@ module gear(motor){
     Dh = R/2;                       // Distance from the center
 
     difference(){
+        color([.5,.5,.5])
         union(){ // Envelope
             spur_gear(2*R/Z, Z, H, 0);
             cylinder(r = R-2, h = H);

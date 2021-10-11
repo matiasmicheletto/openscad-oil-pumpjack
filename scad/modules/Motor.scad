@@ -74,6 +74,7 @@ module block(motor, shr, msr, c){
     }
 
     difference(){ 
+        color([.5,.5,.5])
         envelope();
         if(motor) motor_hole();
         shaft_hole();

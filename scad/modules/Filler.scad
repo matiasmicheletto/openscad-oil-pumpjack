@@ -5,10 +5,11 @@ module filler(psr){
     ri = psr+0.25;  // Inner radius
     h = 3;          // Thickness
     
+    color([.5,.5,.5])
     difference(){
         cylinder(r = re, h = h);
         cylinder(r = ri, h = h);
     }
 }
 
-filler();
+filler(2.7);

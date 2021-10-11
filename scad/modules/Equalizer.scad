@@ -36,6 +36,7 @@ module equalizer(shr, psr){
     }
     
     difference(){
+        color([.5,.5,.5])
         body();
         translate([0,0,h/2])
             cube([w, W, h], center = true);

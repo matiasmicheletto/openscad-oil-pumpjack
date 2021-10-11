@@ -32,6 +32,7 @@ module horseHead(R, shr){
 
     translate([0, 0, -H/2]){ 
         difference(){
+            color([1,0.5,0.25])
             linear_extrude(height = H)
                 intersection(){
                     translate([R, -b1/2, 0])

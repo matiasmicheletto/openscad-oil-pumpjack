@@ -7,6 +7,7 @@ module beam(r1, r2, shr, msr, type = 1){
     e = 10; // Total added extension
     
     difference(){
+        color([.5,.5,.5])
         union(){            
             translate([type==1 ? (r2-r1)/2 : (-r2-r1)/2, 0, H/2]) // Walking beam body
                 cube([r1+r2+e, W, H], center = true);                       
